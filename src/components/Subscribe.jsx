@@ -3,7 +3,7 @@ import React from 'react'
 export default function Subscribe() {
 
     return(
-        <>
+        <div>
             <div style={styles.subscribeContainer}>
                 <h2 style={styles.subscribeTitle}>Subscribe to our Newsletter</h2>
                 <p style={styles.subscribeSubtitle}>
@@ -20,53 +20,57 @@ export default function Subscribe() {
                     </button>
                 </form>
             </div>
-        </>
+        </div>
     )
 }
 
 const styles = {
-    subscribeContainer:{
-        paddingVertical: '40px',
+    subscribeContainer: {
+        padding: '60px 20px',
         alignItems: 'center',
         textAlign: 'center',
-        marginTop: '14px',
     },
-    subscribeTitle:{
-        fontSize: '40px',
-        fontFamily: 'MediumFont',
+    subscribeTitle: {
+        fontSize: '28px',
+        fontWeight: '400',
         marginBottom: '10px',
+        color: '#000',
     },
-    subscribeSubtitle:{
-        fontSize: '25px',
-        fontFamily: 'RegularFont',
+    subscribeSubtitle: {
+        fontSize: '14px',
+        fontWeight: '400',
+        marginBottom: '30px',
+        color: '#666',
     },
-    formContainer:{
-        marginTop: '20px',
+    formContainer: {
         display: 'flex',
-        justifyContent: 'space-between',
+        justifyContent: 'center',
         alignItems: 'center',
-        gap: '10px',
+        gap: '12px',
+        maxWidth: '500px',
+        margin: '0 auto',
     },
-    emailInput:{
-        minHeight: '50px',
-        width: '70%',
-        padding: '10px',
-        fontSize: '16px',
+    emailInput: {
+        height: '30px',
+        flex: 1,
+        padding: '10px 15px',
+        fontSize: '14px',
         backgroundColor: '#d9d9d9',
         border: 'none',
         borderRadius: '4px',
-        boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+        fontFamily: 'RegularFont',
     },
-    subscribeButton:{
-        minHeight: '50px',
-        width: '25%',
+    subscribeButton: {
+        height: '50px',
+        paddingLeft: '20px',
+        paddingRight: '20px',
         backgroundColor: '#FFBCBC',
         border: 'none',
         borderRadius: '4px',
-        boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-        color : '#000',
-        fontFamily: 'MediumFont',
+        color: '#000',
         fontSize: '25px',
+        fontFamily: 'MediumFont',
         cursor: 'pointer',
+        whiteSpace: 'nowrap',
     }
 }

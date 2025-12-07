@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUp } from 'lucide-react';
 
 export default function Footer(){
-        const [isVisible, setIsVisible] = useState(false);
+    const [isVisible, setIsVisible] = useState(false);
 
   
     useEffect(() => {
@@ -26,7 +26,7 @@ export default function Footer(){
         });
     };
     return(
-        <>
+        <div>
             <footer style={styles.footer}>
                 <div style={styles.container} className="container">
                     <Link to="/">
@@ -37,53 +37,63 @@ export default function Footer(){
                         <Link to="/lip-products">Customer Service</Link>
                         <Link to="/eye-products">NewsLetter</Link>
                     </nav>
-                    {/* returning button to the start of the page */}
-                    {isVisible && (
-                        <button onClick={scrollToTop} style={styles.scrollToTopButton}>
-                            <ArrowUp size={24} />
-                        </button>
-                    )}
                     </div>
             </footer>
-        </>
+            {/* returning button to the start of the page */}
+            {isVisible && (
+                <button onClick={scrollToTop} style={styles.scrollToTopButton}>
+                    <ArrowUp />
+                </button>
+            )}
+        </div>
     )
 }
 
-const styles ={
-    footer:{
-        padding: '20px 17px',
+const styles = {
+    footer: {
+        width: '100%',
         backgroundColor: '#F1C3C3',
-        marginTop: '30px'
+        zIndex: 1000,
+        boxShadow: 'none',
     },
-    container:{
+    container: {
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
+        padding: '20px 30px',
+        maxWidth: '1280px',
+        margin: '0 auto',
+        width: '100%',
     },
-    title:{
+    title: {
         margin: 0,
         fontSize: '40px',
+        fontWeight: '400',
         color: '#000',
     },
-    nav:{
+    nav: {
         display: 'flex',
-        gap: '10px',
-        fontSize: '20px',
-        fontWeight: '500'
+        gap: '40px',
+        fontSize: '25px',
+        fontWeight: '400',
+        flex: 1,
+        justifyContent: 'center',
     },
-    scrollToTopButton:{
+    scrollToTopButton: {
         position: 'fixed',
-        bottom: '8px',
-        right: '8px',
-        backgroundColor: '#efd1d1ff',
-        hover:{
-            backgroundColor: '#f1c3c3ff'
-        },
-        padding: '10px',
+        bottom: '20px',
+        right: '20px',
+        backgroundColor: '#ffdcdcff',
+        padding: '12px',
         borderRadius: '50%',
         border: 'none',
-        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.3)',
+        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
         cursor: 'pointer',
-        transition: 'background-color 0.3s ease'
+        transition: 'background-color 0.3s ease',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '44px',
+        height: '44px',
     }
 }

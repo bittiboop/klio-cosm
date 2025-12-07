@@ -1,0 +1,17 @@
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+header a {
+    text-decoration: none;
+    color: #000;
+}
+
+header a:visited {
+    color: #000;
+}
+
+header a:hover {
+    text-decoration: none;
+}

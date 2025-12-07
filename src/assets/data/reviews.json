@@ -1,0 +1,28 @@
+ {
+    "reviews": [
+    {
+      "id": 1,
+      "title": "Review 1",
+      "text": "I ordered the Clio Kill Cover Cushion, and it was perfect! Lightweight, flawless coverage, and long-lasting. The sleek packaging and smooth application exceeded my expectations. My skin looks radiant all day—I’m definitely repurchasing!",
+      "rating": 4
+    },
+    {
+      "id": 2,
+      "title": "Review 2",
+      "text": "I ordered the Clio Kill Cover Cushion, and it was perfect! Lightweight, flawless coverage, and long-lasting. The sleek packaging and smooth application exceeded my expectations. My skin looks radiant all day—I’m definitely repurchasing!",
+      "rating": 5
+    },
+    {
+      "id": 3,
+      "title": "Review 3",
+      "text": "I ordered the Clio Kill Cover Cushion, and it was perfect! Lightweight, flawless coverage, and long-lasting. The sleek packaging and smooth application exceeded my expectations. My skin looks radiant all day—I’m definitely repurchasing!",
+      "rating": 3
+    },
+    {
+      "id": 4,
+      "title": "Review 4",
+      "text": "I ordered the Clio Kill Cover Cushion, and it was perfect! Lightweight, flawless coverage, and long-lasting. The sleek packaging and smooth application exceeded my expectations. My skin looks radiant all day—I’m definitely repurchasing!",
+      "rating": 5
+    }
+    ]
+}

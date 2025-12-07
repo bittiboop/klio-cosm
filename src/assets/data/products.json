@@ -25,7 +25,7 @@
       "currency": "₩",
       "originalPrice": null,
       "description": "A versatile collection of highly pigmented eyeshadows, perfect for creating everyday or bold looks.",
-      "image": "../../../klio-cosm/src/assets/img/products/eye-palletes/shadow-gallery-brown.png",
+      "image": "assets/img/products/eye-palletes/shadow-gallery-brown.png",
       "inStock": true,
       "featured": true,
       "slug": "eye-palette-shadow-gallery"
@@ -38,20 +38,35 @@
       "currency": "₩",
       "originalPrice": null,
       "description": "A versatile collection of highly pigmented eyeshadows, perfect for creating everyday or bold looks.",
-      "image": "../../../klio-cosm/src/assets/img/products/eye-palletes/pro-eye-palette-pink.png",
+      "image": "assets/img/products/eye-palletes/pro-eye-palette-pink.png",
       "inStock": true,
       "featured": true,
       "slug": "eye-palette-pro-pink"
     },
     {
       "id": "lipstick-001",
-      "name": "Lipstick",
+      "name": "Mad Matte Lipstick",
+      "subtitle": "Honey Apricot",
       "category": "lip-products",
-      "price": 15000,
+      "price": 12000,
       "currency": "₩",
-      "originalPrice": null,
-      "description": "A versatile collection of highly pigmented eyeshadows, perfect for creating everyday or bold looks.",
-      "image": "../../../klio-cosm/src/assets/img/products/lip/honey-apricot-lipstick.png",
+      "originalPrice": 16000,
+      "description": "Ultra-pigmented matte lipstick with a velvety smooth texture. Long-lasting formula that stays comfortable all day without drying your lips.",
+      "detailedDescription": "The Mad Matte Lipstick collection features intense color payoff with a sophisticated matte finish. Enriched with nourishing ingredients like vitamin E and shea butter, it keeps your lips moisturized while delivering bold, statement-making color that lasts for hours.",
+      "image": "assets/img/products/lip/honey-apricot-lipstick.png",
+      "images": [
+        "assets/img/products/lip/honey-apricot-lipstick.png",
+        "assets/img/products/lip/pink-blender-lipstick.png"
+      ],
+      "weight": "3.5",
+      "reviews": 189,
+      "shades": [
+        { "name": "01 Honey", "color": "#E8A87C" },
+        { "name": "02 Rose", "color": "#D98B9C" },
+        { "name": "03 Coral", "color": "#FF9B8C" },
+        { "name": "04 Berry", "color": "#B85C6C" },
+        { "name": "05 Nude", "color": "#C9A393" }
+      ],
       "inStock": true,
       "featured": false,
       "slug": "lipstick-honey-apricot"
@@ -64,20 +79,33 @@
       "currency": "₩",
       "originalPrice": null,
       "description": "A versatile collection of highly pigmented eyeshadows, perfect for creating everyday or bold looks.",
-      "image": "../../../klio-cosm/src/assets/img/products/lip/pink-blender-lipstick.png",
+      "image": "assets/img/products/lip/pink-blender-lipstick.png",
       "inStock": true,
       "featured": false,
       "slug": "lipstick-pink-blender"
     },
     {
       "id": "face-product-001",
-      "name": "Face Product",
+      "name": "Kill Cover Mint Cushion",
+      "subtitle": "Refreshing Coverage",
       "category": "face-products",
-      "price": 15000,
+      "price": 18000,
       "currency": "₩",
-      "originalPrice": null,
-      "description": "A versatile collection of highly pigmented eyeshadows, perfect for creating everyday or bold looks.",
-      "image": "/images/products/mint-cushion.png",
+      "originalPrice": 24000,
+      "description": "A refreshing cushion foundation with mint extract that provides long-lasting coverage while keeping your skin cool and comfortable throughout the day.",
+      "detailedDescription": "The Kill Cover Mint Cushion features a unique cooling formula infused with natural mint extract. It provides buildable coverage from medium to full, while the mint complex helps control oil and minimize pores. Perfect for all skin types, especially combination and oily skin.",
+      "image": "assets/img/products/face/mint-cushion.png",
+      "images": [
+        "assets/img/products/face/mint-cushion.png",
+        "assets/img/products/face/gold-shimmer-cushion.png"
+      ],
+      "weight": "15.0",
+      "reviews": 156,
+      "shades": [
+        { "name": "21 Light", "color": "#F5D9C8" },
+        { "name": "23 Natural", "color": "#E8C4A8" },
+        { "name": "25 Tan", "color": "#D4A884" }
+      ],
       "inStock": true,
       "featured": false,
       "slug": "face-product-mint-cushion"
@@ -90,7 +118,7 @@
       "currency": "₩",
       "originalPrice": null,
       "description": "A versatile collection of highly pigmented eyeshadows, perfect for creating everyday or bold looks.",
-      "image": "/images/products/gold-shimmer-cushion.png",
+      "image": "assets/img/products/face/gold-shimmer-cushion.png",
       "inStock": true,
       "featured": false,
       "slug": "face-product-gold-shimmer"
@@ -103,7 +131,7 @@
       "currency": "₩",
       "originalPrice": null,
       "description": "A versatile collection of highly pigmented eyeshadows, perfect for creating everyday or bold looks.",
-      "image": "../../../klio-cosm/src/assets/img/products/eye-palletes/mini-brown-palette.png",
+      "image": "assets/img/products/eye-palletes/mini-brown-palette.png",
       "inStock": true,
       "featured": false,
       "slug": "eye-palette-mini-brown"
@@ -116,7 +144,7 @@
       "currency": "₩",
       "originalPrice": null,
       "description": "A versatile collection of highly pigmented eyeshadows, perfect for creating everyday or bold looks.",
-      "image": "../../../klio-cosm/src/assets/img/products/eye-palletes/nude-palette.png",
+      "image": "assets/img/products/eye-palletes/nude-palette.png",
       "inStock": true,
       "featured": false,
       "slug": "eye-palette-nude"
@@ -131,7 +159,20 @@
       "originalPrice": 22000,
       "description": "The Clio Kill Cover Cushion is your go-to for a flawless, high-coverage finish that lasts all day. Infused with skincare ingredients, it provides a smooth, natural look while keeping your skin hydrated.",
       "detailedDescription": "The CLIO eyeshadow palette includes 3 types of rich shades: matte, shimmering and glitter. The set contains 12 shadows in delicate pink, beige and brown tones. The shades are perfectly combined with each other and allow you to create a natural look or a stunning evening makeup. The palette includes the shades As Like, Fermata, Do It Dewy, Glistening, Slow Stay, Simple Mood, Kinda Rose, Hidden Meaning, Muted Moment, Hazy Mauve, Vintage Vibe, Long And Short.",
-      "image": "../../../klio-cosm/src/assets/img/products/eye-palletes/scoop-palette.png",
+      "image": "assets/img/products/eye-palletes/scoop-palette.png",
+      "images": [
+        "assets/img/products/eye-palletes/scoop-palette.png",
+        "assets/img/products/eye-palletes/shadow-gallery-brown.png",
+        "assets/img/products/eye-palletes/pro-eye-palette-pink.png"
+      ],
+      "weight": "12.0",
+      "reviews": 248,
+      "shades": [
+        { "name": "01 Nude", "color": "#D4A574" },
+        { "name": "02 Rose", "color": "#E8B4B4" },
+        { "name": "03 Mauve", "color": "#C4A5A5" },
+        { "name": "04 Brown", "color": "#8B6F5C" }
+      ],
       "inStock": true,
       "featured": true,
       "onSale": true,
@@ -145,7 +186,7 @@
       "currency": "₩",
       "originalPrice": null,
       "description": "A versatile collection of highly pigmented eyeshadows, perfect for creating everyday or bold looks.",
-      "image": "../../../klio-cosm/src/assets/img/products/eye-palletes/mauve-palette.png",
+      "image": "assets/img/products/eye-palletes/mauve-palette.png",
       "inStock": true,
       "featured": false,
       "slug": "eye-palette-mauve"
@@ -158,7 +199,7 @@
       "currency": "₩",
       "originalPrice": null,
       "description": "A lightweight, high-pigment lip tint that glides on smoothly and dries to a soft matte finish, offering vibrant color.",
-      "image": "../../../klio-cosm/src/assets/img/products/lip/lipstick-red.png",
+      "image": "assets/img/products/lip/lipstick-red.png",
       "inStock": true,
       "featured": false,
       "slug": "lipstick-red-matte"
@@ -171,7 +212,7 @@
       "currency": "₩",
       "originalPrice": null,
       "description": "A lightweight, high-pigment lip tint that glides on smoothly and dries to a soft matte finish, offering vibrant color.",
-      "image": "../../../klio-cosm/src/assets/img/products/lip/lipstick-pink.png",
+      "image": "assets/img/products/lip/lipstick-pink.png",
       "inStock": true,
       "featured": false,
       "slug": "lipstick-pink-matte"
@@ -184,7 +225,7 @@
       "currency": "₩",
       "originalPrice": null,
       "description": "A lightweight, high-pigment lip tint that glides on smoothly and dries to a soft matte finish, offering vibrant color.",
-      "image": "../../../klio-cosm/src/assets/img/products/lip/lipstick-nude.png",
+      "image": "assets/img/products/lip/lipstick-nude.png",
       "inStock": true,
       "featured": false,
       "slug": "lipstick-nude-matte"
@@ -197,7 +238,7 @@
       "currency": "₩",
       "originalPrice": null,
       "description": "A lightweight, high-pigment lip tint that glides on smoothly and dries to a soft matte finish, offering vibrant color.",
-      "image": "../../../klio-cosm/src/assets/img/products/lip/lipstick-tube-red.png",
+      "image": "assets/img/products/lip/lipstick-tube-red.png",
       "inStock": true,
       "featured": false,
       "slug": "lipstick-tube-red"
@@ -210,7 +251,7 @@
       "currency": "₩",
       "originalPrice": null,
       "description": "A lightweight, high-pigment lip tint that glides on smoothly and dries to a soft matte finish, offering vibrant color.",
-      "image": "../../../klio-cosm/src/assets/img/products/lip/lipstick-tube-dark.png",
+      "image": "assets/img/products/lip/lipstick-tube-dark.png",
       "inStock": true,
       "featured": false,
       "slug": "lipstick-tube-dark"
@@ -223,7 +264,7 @@
       "currency": "₩",
       "originalPrice": null,
       "description": "A lightweight, high-pigment lip tint that glides on smoothly and dries to a soft matte finish, offering vibrant color.",
-      "image": "../../../klio-cosm/src/assets/img/products/lip/lipstick-gloss.png",
+      "image": "assets/img/products/lip/lipstick-gloss.png",
       "inStock": true,
       "featured": false,
       "slug": "lipstick-gloss-pink"
@@ -236,7 +277,7 @@
       "currency": "₩",
       "originalPrice": null,
       "description": "A versatile collection of highly pigmented eyeshadows, perfect for creating everyday or bold looks.",
-      "image": "../../../klio-cosm/src/assets/img/products/face/compact-set.png",
+      "image": "assets/img/products/face/compact-set.png",
       "inStock": true,
       "featured": true,
       "slug": "face-compact-set"
@@ -249,7 +290,7 @@
       "currency": "₩",
       "originalPrice": null,
       "description": "A versatile collection of highly pigmented eyeshadows, perfect for creating everyday or bold looks.",
-      "image": "../../../klio-cosm/src/assets/img/products/face/concealer-bottle.png",
+      "image": "assets/img/products/face/concealer-bottle.png",
       "inStock": true,
       "featured": false,
       "slug": "face-concealer"
@@ -262,7 +303,7 @@
       "currency": "₩",
       "originalPrice": null,
       "description": "A versatile collection of highly pigmented eyeshadows, perfect for creating everyday or bold looks.",
-      "image": "../../../klio-cosm/src/assets/img/products/face/foundation-bottle.png",
+      "image": "assets/img/products/face/foundation-bottle.png",
       "inStock": true,
       "featured": false,
       "slug": "face-foundation-bottle"
@@ -275,7 +316,7 @@
       "currency": "₩",
       "originalPrice": null,
       "description": "A versatile collection of highly pigmented eyeshadows, perfect for creating everyday or bold looks.",
-      "image": "../../../klio-cosm/src/assets/img/products/face/mascara.png",
+      "image": "assets/img/products/face/mascara.png",
       "inStock": true,
       "featured": false,
       "slug": "face-mascara"
@@ -288,7 +329,7 @@
       "currency": "₩",
       "originalPrice": null,
       "description": "A versatile collection of highly pigmented eyeshadows, perfect for creating everyday or bold looks.",
-      "image": "../../../klio-cosm/src/assets/img/products/face/eyebrow-pencil.png",
+      "image": "assets/img/products/face/eyebrow-pencil.png",
       "inStock": true,
       "featured": false,
       "slug": "face-eyebrow-pencil"
@@ -301,7 +342,7 @@
       "currency": "₩",
       "originalPrice": null,
       "description": "A versatile collection of highly pigmented eyeshadows, perfect for creating everyday or bold looks.",
-      "image": "../../../klio-cosm/src/assets/img/products/face/compact-duo.png",
+      "image": "assets/img/products/face/compact-duo.png",
       "inStock": true,
       "featured": false,
       "slug": "face-compact-duo"
