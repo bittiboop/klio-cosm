@@ -5,6 +5,7 @@ import ProductList from '../../assets/data/products.json';
 import ProductTabs from '../../screens/ProductPage/components/ProductsTabs.jsx';
 import ProductMainInfo from '../../screens/ProductPage/components/ProductMainInfo.jsx';
 import RelatedProducts from '../../components/RelatedProducts.jsx';
+import MoreToSee from '../../components/MoreToSee.jsx';
 
 
 export default function ProductPage(){
@@ -35,6 +36,7 @@ export default function ProductPage(){
             <RelatedProducts 
             currentProductId={productId} 
             category={productData.category} />
+            <MoreToSee/>
         </div>
     )
 }
