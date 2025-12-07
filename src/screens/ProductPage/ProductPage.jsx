@@ -46,7 +46,7 @@ const styles = {
       maxWidth: '1280px', 
       margin: '0 auto',
       padding: '0 20px',
-      fontFamily: "'Helvetica Neue', sans-serif",
+      fontFamily: "RegularFont",
     },
     divider: {
       border: 'none',
