@@ -1,15 +1,16 @@
-import React, {useState, useEffect} from 'react';
-import { Link } from 'react-router-dom';
+import React, {useState, useEffect, useContext} from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { SearchContext } from '../../features/SearchContext';
+import '../Header/Header.css';
 
-import userIcon from "../../src/assets/img/icons-btn/image 1.png";
-import searchIcon from "../../src/assets/img/icons-btn/image 2.png";
-import cartIcon from "../../src/assets/img/icons-btn/image 3.png";
-
-import './Header.css';
-
+import userIcon from "../../assets/img/icons-btn/image 1.png";
+import searchIcon from "../../assets/img/icons-btn/image 2.png";
+import cartIcon from "../../assets/img/icons-btn/image 3.png";
 
 export default function Header(){
     const [isScrolled, setIsScrolled] = useState(false);
+    const { setIsSearchOpen } = useContext(SearchContext);
+    const location = useLocation();
 
     useEffect(()=>{
         const handleScroll = ()=>{
@@ -30,19 +31,22 @@ export default function Header(){
                         <h1 style={styles.title}>Clio</h1>
                     </Link>       
                     <nav style={styles.nav}>
-                        <Link to="*">All products</Link>
-                        <Link to="/lip">Lip</Link>
-                        <Link to="/palettes">Eye</Link>
-                        <Link to="/face">Face</Link>
+                        <Link to="/all-products" style={location.pathname === '/all-products' ? {...styles.navLink, ...styles.activeLink} : styles.navLink}>All products</Link>
+                        <Link to="/lip" style={location.pathname === '/lip' ? {...styles.navLink, ...styles.activeLink} : styles.navLink}>Lip</Link>
+                        <Link to="/palettes" style={location.pathname === '/palettes' ? {...styles.navLink, ...styles.activeLink} : styles.navLink}>Eye</Link>
+                        <Link to="/face" style={location.pathname === '/face' ? {...styles.navLink, ...styles.activeLink} : styles.navLink}>Face</Link>
                     </nav>
                     <nav style={styles.icons}>
-                        <Link to="*">
+                        <Link to="/">
                             <img src={userIcon} alt="user icon" />
                         </Link>
-                        <Link to="*">
+                        <button 
+                            onClick={() => setIsSearchOpen(true)}
+                            style={styles.searchBtn}
+                        >
                             <img src={searchIcon} alt="search icon" />
-                        </Link>
-                        <Link to="*">
+                        </button>
+                        <Link to="/">
                             <img src={cartIcon} alt="cart icon" />
                         </Link>
                     </nav>
@@ -89,5 +93,25 @@ const styles = {
         display: 'flex',
         gap: '20px',
         alignItems: 'center',
-    }
+    },
+    searchBtn: {
+        background: 'none',
+        border: 'none',
+        cursor: 'pointer',
+        padding: 0,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        transition: 'transform 0.3s ease',
+    },
+    navLink: {
+        textDecoration: 'none',
+        color: '#000',
+        transition: 'border-bottom 0.3s ease',
+        borderBottom: '2px solid transparent',
+        paddingBottom: '4px',
+    },
+    activeLink: {
+        borderBottom: '2px solid #000',
+    },
 }

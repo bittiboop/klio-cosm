@@ -52,7 +52,12 @@ export default function ProductCard({ProductList}) {
                             <img src={isLiked ? likedHeartIcon : heartIcon} alt="like icon" />
                         </button>
                     </div>
-                    <p style={styles.price}>{ProductList.price}{ProductList.currency}</p>
+                    <div style={styles.priceSection}>
+                        {ProductList.originalPrice && (
+                            <span style={styles.oldPrice}>{ProductList.originalPrice}{ProductList.currency}</span>
+                        )}
+                        <p style={styles.price}>{ProductList.price}{ProductList.currency}</p>
+                    </div>
                     <p style={styles.description}>{ProductList.description}</p>
                     
                     {isLiked && <p>Is in your liked products: {ProductList.name}</p>}
@@ -157,6 +162,19 @@ const styles = {
         fontWeight: '600',
         margin: '0',
         color: '#000',
+    },
+    priceSection: {
+        display: 'flex',
+        alignItems: 'center',
+        gap: '8px',
+        margin: '0',
+    },
+    oldPrice: {
+        textDecoration: 'line-through',
+        color: '#999',
+        fontSize: '12px',
+        fontFamily: 'RegularFont',
+        margin: '0',
     },
     description: {
         fontSize: '12px',

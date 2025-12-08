@@ -1,20 +1,20 @@
 import React, { useMemo } from 'react';
 import ProductCard from './ProductCard'; 
+import ProductList from '../assets/data/products.json';
 
-const RelatedProducts = ({ currentProduct, allProducts }) => {
-
+function RelatedProducts({ currentProductId, category }) {
   const relatedItems = useMemo(() => {
-    if (!currentProduct || !allProducts) return [];
+    if (!currentProductId || !category || !ProductList.products) return [];
 
-    return allProducts
+    return ProductList.products
       .filter((item) => {
-        const isSameCategory = item.category === currentProduct.category;
-        const isNotCurrent = item.id !== currentProduct.id;
+        const isSameCategory = item.category === category;
+        const isNotCurrent = item.id !== currentProductId;
         
         return isSameCategory && isNotCurrent;
       })
       .slice(0, 3);
-  }, [currentProduct, allProducts]);
+  }, [currentProductId, category]);
 
   if (relatedItems.length === 0) return null;
 
@@ -26,15 +26,15 @@ const RelatedProducts = ({ currentProduct, allProducts }) => {
         {relatedItems.map((product) => (
           <ProductCard 
             key={product.id} 
-            data={product} 
+            ProductList={product} 
           />
         ))}
       </div>
     </section>
   );
-};
+}
 
-const styles ={
+const styles = {
     container: {
         margin: '40px 0',
         textAlign: 'center'

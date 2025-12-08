@@ -1,26 +1,27 @@
 import React, { useState } from 'react';
 import ProductCard from '../../components/ProductCard.jsx';
 import ProductList from '../../assets/data/products.json';
+import DealOfTheMonth from '../Main/components/DealOfTheMonth.jsx';
 import MoreToSee from '../../components/MoreToSee.jsx';
 import Bestsellers from '../../components/Bestsellers.jsx';
-import DealOfTheMonth from '../Main/components/DealOfTheMonth.jsx';
 import Pagination from '../../features/Pagination.jsx'
 
-export default function EyePalettes() {
-    const eyePalettes = ProductList.products.filter(product => product.category === 'eye-palettes');
+export default function AllProducts() {
+    const allProducts = ProductList.products;
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 6;
     
-    const totalPages = Math.ceil(eyePalettes.length / itemsPerPage);
+    const totalPages = Math.ceil(allProducts.length / itemsPerPage);
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
-    const currentProducts = eyePalettes.slice(startIndex, endIndex);
+    const currentProducts = allProducts.slice(startIndex, endIndex);
 
     return(
         <div style={styles.container}>
+            
             <DealOfTheMonth />
             <div style={styles.pageWrapper}>
-                <h1 style={styles.title}>Eye palettes</h1>
+                <h1 style={styles.title}>All products</h1>
                 
                 <div style={styles.productsListContainer}>
                     {currentProducts.map((product) => (

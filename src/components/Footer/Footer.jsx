@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUp } from 'lucide-react';
 
+import '../Footer/Footer.css';
+
 export default function Footer(){
     const [isVisible, setIsVisible] = useState(false);
 

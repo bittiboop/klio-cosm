@@ -9,23 +9,23 @@ const bestsellersData = {
         subtitle: 'Clio Kill Cover Cushion',
         description: 'The Clio Kill Cover Cushion is designed for a flawless, long-lasting finish. Infused with nourishing and gentle skincare ingredients, it provides a smooth, natural look while keeping your skin hydrated.'
     },
-    '/palettes': { 
+    '/lip': { 
         id: 2, 
         image: 'assets/img/bestsellers/image 1.png',
-        title: 'Eye Palette Bestseller',
-        subtitle: 'Shadow Gallery Pro',
-        description: 'A versatile collection of highly pigmented eyeshadows, perfect for creating everyday or bold looks with ease.'
-    },
-    '/lip': { 
-        id: 3, 
-        image: 'assets/img/bestsellers/image 2.png',
         title: 'Lip Product Bestseller',
         subtitle: 'Tint Lip Stain',
         description: 'A lightweight, long-wearing lip tint that delivers vibrant color and a comfortable feel throughout the day.'
     },
+    '/palettes': { 
+        id: 3, 
+        image: 'assets/img/bestsellers/image 3.png',
+        title: 'Eye Palette Bestseller',
+        subtitle: 'Shadow Gallery Pro',
+        description: 'A versatile collection of highly pigmented eyeshadows, perfect for creating everyday or bold looks with ease.'
+    },
     '/face': { 
         id: 4, 
-        image: 'assets/img/bestsellers/image 3.png',
+        image: 'assets/img/bestsellers/image 2.png',
         title: 'Face Product Bestseller',
         subtitle: 'Cushion Foundation',
         description: 'A cushion foundation that provides buildable coverage while keeping your skin hydrated and luminous.'
