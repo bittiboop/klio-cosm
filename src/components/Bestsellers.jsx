@@ -49,6 +49,7 @@ export default function Bestsellers() {
             <div style={styles.imageSection}>
                 <img
                 src={imageUrl}
+                alt={bestseller.subtitle}
                 style={styles.bestsellerImage}
                 />
             </div>

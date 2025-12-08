@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import heartIcon from "../assets/img/icons-btn/heart-icon.png";
-import ProductList from "../assets/data/products.json";
 import likedHeartIcon from "../assets/img/icons-btn/liked-heart-icon.png";
 
 export default function ProductCard({ProductList}) {

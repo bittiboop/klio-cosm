@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import heartIcon from "../../../assets/img/icons-btn/heart-icon.png";
+// eslint-disable-next-line no-unused-vars
 import ProductList from '../../../assets/data/products.json';
 import likedHeartIcon from "../../../assets/img/icons-btn/liked-heart-icon.png";
 
 export default function ProductMainInfo({ProductList, productId}) {
+    // eslint-disable-next-line no-unused-vars
     const [isLiked, setIsLiked] = useState(false);
     const [selectedImage, setSelectedImage] = useState(0);
     
