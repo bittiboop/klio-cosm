@@ -8,6 +8,7 @@ import likedHeartIcon from "../../../assets/img/icons-btn/liked-heart-icon.png";
 export default function ProductMainInfo({ProductList, productId}) {
     // eslint-disable-next-line no-unused-vars
     const [isLiked, setIsLiked] = useState(false);
+    // eslint-disable-next-line no-unused-vars
     const [selectedImage, setSelectedImage] = useState(0);
     
     if (!productId) {
