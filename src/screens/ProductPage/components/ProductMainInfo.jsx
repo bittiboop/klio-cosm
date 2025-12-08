@@ -73,7 +73,7 @@ export default function ProductMainInfo({ProductList, productId}) {
 
                     <div style={styles.priceBlock}>
                         {product.originalPrice && (
-                            <span style={styles.oldPrice}>{product.originalPrice}tg.</span>
+                            <span style={styles.oldPrice}>{product.originalPrice}{product.currency}</span>
                         )}
                         <span style={styles.currentPrice}>{product.price}{product.currency}</span>
                     </div>

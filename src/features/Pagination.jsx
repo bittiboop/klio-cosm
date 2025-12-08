@@ -12,7 +12,7 @@ export default function Pagination({ currentPage, totalPages, onPageChange }) {
                 disabled={currentPage === 1}
                 style={currentPage === 1 ? styles.buttonDisabled : styles.button}
             >
-                ← Попередня
+                ← Last
             </button>
 
             <div style={styles.pageNumbers}>
@@ -32,7 +32,7 @@ export default function Pagination({ currentPage, totalPages, onPageChange }) {
                 disabled={currentPage === totalPages}
                 style={currentPage === totalPages ? styles.buttonDisabled : styles.button}
             >
-                Наступна →
+                Next →
             </button>
         </div>
     );

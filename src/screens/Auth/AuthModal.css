@@ -1,0 +1,25 @@
+
+.auth-modal {
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+input:focus {
+    outline: none;
+    border-color: #FFBCBC !important;
+    box-shadow: 0 0 0 3px rgba(255, 188, 188, 0.1);
+}
+
+button:hover:not(:disabled) {
+    transform: translateY(-2px);
+}

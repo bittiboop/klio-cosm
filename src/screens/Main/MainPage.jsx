@@ -5,6 +5,7 @@ import OurProducts from './components/OurProducts.jsx';
 import Subscribe from '../../components/Subscribe.jsx';
 import Bestsellers from '../../components/Bestsellers.jsx';
 import MoreToSee from '../../components/MoreToSee.jsx';
+import Reviews from './components/Reviews.jsx';
 
 export default function MainPage() {
     return(
@@ -12,6 +13,7 @@ export default function MainPage() {
             <DealOfTheMonth/>
             <OurProducts/>
             <Bestsellers/>
+            <Reviews/>
             <MoreToSee/>
             <Subscribe/>
         </div>

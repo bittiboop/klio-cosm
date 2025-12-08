@@ -1,5 +1,7 @@
 import React, {useState, useEffect, useContext} from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { logout } from '../../features/auth/authSlice';
 import { SearchContext } from '../../features/SearchContext';
 import '../Header/Header.css';
 
@@ -7,10 +9,13 @@ import userIcon from "../../assets/img/icons-btn/image 1.png";
 import searchIcon from "../../assets/img/icons-btn/image 2.png";
 import cartIcon from "../../assets/img/icons-btn/image 3.png";
 
-export default function Header(){
+export default function Header({ onUserIconClick }){
     const [isScrolled, setIsScrolled] = useState(false);
+    const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
     const { setIsSearchOpen } = useContext(SearchContext);
     const location = useLocation();
+    const dispatch = useDispatch();
+    const { isAuthenticated, user } = useSelector(state => state.auth);
 
     useEffect(()=>{
         const handleScroll = ()=>{
@@ -37,9 +42,32 @@ export default function Header(){
                         <Link to="/face" style={location.pathname === '/face' ? {...styles.navLink, ...styles.activeLink} : styles.navLink}>Face</Link>
                     </nav>
                     <nav style={styles.icons}>
-                        <Link to="/">
-                            <img src={userIcon} alt="user icon" />
-                        </Link>
+                        <div style={styles.userIconContainer}>
+                            <button
+                                onClick={() => isAuthenticated ? setIsUserMenuOpen(!isUserMenuOpen) : onUserIconClick()}
+                                style={styles.userBtn}
+                                title={isAuthenticated ? user?.name : 'Login'}
+                            >
+                                <img src={userIcon} alt="user icon" />
+                            </button>
+                            {isAuthenticated && isUserMenuOpen && (
+                                <div style={styles.userMenu}>
+                                    <div style={styles.userInfo}>
+                                        <p style={styles.userName}>{user?.name}</p>
+                                        <p style={styles.userEmail}>{user?.email}</p>
+                                    </div>
+                                    <button
+                                        onClick={() => {
+                                            dispatch(logout());
+                                            setIsUserMenuOpen(false);
+                                        }}
+                                        style={styles.logoutBtn}
+                                    >
+                                        Logout
+                                    </button>
+                                </div>
+                            )}
+                        </div>
                         <button 
                             onClick={() => setIsSearchOpen(true)}
                             style={styles.searchBtn}
@@ -93,6 +121,62 @@ const styles = {
         display: 'flex',
         gap: '20px',
         alignItems: 'center',
+    },
+    userIconContainer: {
+        position: 'relative',
+    },
+    userBtn: {
+        background: 'none',
+        border: 'none',
+        cursor: 'pointer',
+        padding: 0,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        transition: 'transform 0.3s ease',
+    },
+    userMenu: {
+        position: 'absolute',
+        top: '100%',
+        right: 0,
+        backgroundColor: '#fff',
+        borderRadius: '8px',
+        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+        padding: '15px 20px',
+        marginTop: '10px',
+        minWidth: '200px',
+        zIndex: 1001,
+    },
+    userInfo: {
+        marginBottom: '15px',
+        borderBottom: '1px solid #f0f0f0',
+        paddingBottom: '15px',
+    },
+    userName: {
+        margin: '0 0 5px 0',
+        fontSize: '14px',
+        fontWeight: '600',
+        color: '#000',
+        fontFamily: 'RegularFont, sans-serif',
+    },
+    userEmail: {
+        margin: 0,
+        fontSize: '12px',
+        color: '#999',
+        fontFamily: 'RegularFont, sans-serif',
+    },
+    logoutBtn: {
+        width: '100%',
+        padding: '10px',
+        backgroundColor: '#FFBCBC',
+        color: '#000',
+        border: 'none',
+        borderRadius: '4px',
+        cursor: 'pointer',
+        fontSize: '14px',
+        fontWeight: '500',
+        fontFamily: 'RegularFont, sans-serif',
+        transition: 'background-color 0.3s ease',
     },
     searchBtn: {
         background: 'none',

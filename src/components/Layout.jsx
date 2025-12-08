@@ -4,7 +4,7 @@ import Header from './Header/Header.jsx';
 import Footer from './Footer/Footer.jsx';
 
 
-export default function Layout() {
+export default function Layout({ authModalOpen }) {
     const location = useLocation();
 
     useEffect(() => {
@@ -13,7 +13,7 @@ export default function Layout() {
 
     return(
         <div style={styles.container}>
-            <Header />
+            <Header onUserIconClick={authModalOpen} />
 
             <main style={styles.main}>
                 <Outlet />
