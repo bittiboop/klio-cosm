@@ -9,13 +9,14 @@ import userIcon from "../../assets/img/icons-btn/image 1.png";
 import searchIcon from "../../assets/img/icons-btn/image 2.png";
 import cartIcon from "../../assets/img/icons-btn/image 3.png";
 
-export default function Header({ onUserIconClick }){
+export default function Header({ onUserIconClick, onCartClick }){
     const [isScrolled, setIsScrolled] = useState(false);
     const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
     const { setIsSearchOpen } = useContext(SearchContext);
     const location = useLocation();
     const dispatch = useDispatch();
     const { isAuthenticated, user } = useSelector(state => state.auth);
+    const cartItems = useSelector(state => state.cart.items);
 
     useEffect(()=>{
         const handleScroll = ()=>{
@@ -74,9 +75,18 @@ export default function Header({ onUserIconClick }){
                         >
                             <img src={searchIcon} alt="search icon" />
                         </button>
-                        <Link to="/">
-                            <img src={cartIcon} alt="cart icon" />
-                        </Link>
+                        <div style={styles.cartContainer}>
+                            <button 
+                                onClick={onCartClick}
+                                style={styles.cartBtn}
+                                title="Shopping cart"
+                            >
+                                <img src={cartIcon} alt="cart icon" />
+                                {cartItems.length > 0 && (
+                                    <span style={styles.cartBadge}>{cartItems.length}</span>
+                                )}
+                            </button>
+                        </div>
                     </nav>
                 </div>
             </header>
@@ -197,5 +207,36 @@ const styles = {
     },
     activeLink: {
         borderBottom: '2px solid #000',
+    },
+    cartContainer: {
+        position: 'relative',
+        display: 'flex',
+        alignItems: 'center',
+    },
+    cartBtn: {
+        background: 'none',
+        border: 'none',
+        cursor: 'pointer',
+        padding: 0,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        position: 'relative',
+        transition: 'transform 0.3s ease',
+    },
+    cartBadge: {
+        position: 'absolute',
+        top: '-8px',
+        right: '-8px',
+        backgroundColor: '#FFBCBC',
+        color: '#000',
+        borderRadius: '50%',
+        width: '20px',
+        height: '20px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontSize: '12px',
+        fontWeight: 'bold',
     },
 }

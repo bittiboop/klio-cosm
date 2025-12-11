@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../features/cart/cartSlice';
 import heartIcon from "../assets/img/icons-btn/heart-icon.png";
 import likedHeartIcon from "../assets/img/icons-btn/liked-heart-icon.png";
 
 export default function ProductCard({ProductList}) {
     const [isLiked, setIsLiked] = useState(false);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     if (!ProductList) {
         return <div>Loading...</div>;
@@ -30,7 +33,8 @@ export default function ProductCard({ProductList}) {
 
     const handleAddToCart = (e) => {
         e.stopPropagation();
-        // Add to cart logic here
+        dispatch(addToCart(ProductList));
+        alert(`${ProductList.name} added to cart!`);
     };
     
     return (
