@@ -35,7 +35,7 @@ export default function Footer(){
                         <h1 style={styles.title}>Clio</h1>
                     </Link>       
                     <nav style={styles.nav}>
-                        <Link to="/products">About us</Link>
+                        <Link to="/about">About us</Link>
                         <Link to="/lip-products">Customer Service</Link>
                         <Link to="/eye-products">NewsLetter</Link>
                     </nav>

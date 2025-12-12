@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import deal1 from '../../../assets/img/main-img/deal 1.png';
 import deal2 from '../../../assets/img/main-img/deal 2.png';
@@ -31,6 +32,7 @@ const dealsData = [
 
 export default function DealOfTheMonth() {
     const [currentDeal, setCurrentDeal] = useState(0);
+    const navigate = useNavigate();
 
     const imageUrl = dealsData[currentDeal].image;
 
@@ -40,6 +42,10 @@ export default function DealOfTheMonth() {
 
     const handleNext = () => {
         setCurrentDeal((prev) => (prev === dealsData.length - 1 ? 0 : prev + 1));
+    };
+
+    const handleShopNow = () => {
+        navigate('/all-products');
     };
 
     return (
@@ -72,7 +78,7 @@ export default function DealOfTheMonth() {
                             ></span>
                         ))}
                     </div>
-                    <button style={styles.shopButton}>Shop now</button>
+                    <button style={styles.shopButton} onClick={handleShopNow}>Shop now</button>
                 </div>
             </div>
         </div>

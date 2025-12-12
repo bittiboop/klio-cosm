@@ -1,11 +1,15 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { addToCart } from '../../features/cart/cartSlice';
 import ShoppingList from './components/ShoopingList';
 import PromoCode from './components/PromoCode';
 import CheckOut from './components/CheckOut';
 import RelatedProducts from '../../components/RelatedProducts';
 import { clearCart } from '../../features/cart/cartSlice';
 import ProductList from '../../assets/data/products.json';
+import shareIcon from '../../assets/img/cart-icons/share-icon.png';
+import clearCartIcon from '../../assets/img/cart-icons/clear-cart-icon.png';
+import closeCartIcon from '../../assets/img/cart-icons/close-cart-icon.png';
 
 export default function ShoppingCartPage({ isOpen, onClose }) {
     const dispatch = useDispatch();
@@ -23,6 +27,10 @@ export default function ShoppingCartPage({ isOpen, onClose }) {
         }
     };
 
+    const handleAddToRecommended = (product) => {
+        dispatch(addToCart(product));
+    };
+
     // Get related products (suggest other products)
     const relatedProducts = ProductList.products.slice(0, 6);
 
@@ -36,23 +44,23 @@ export default function ShoppingCartPage({ isOpen, onClose }) {
                         <button
                             onClick={handleEdit}
                             style={styles.iconBtn}
-                            title="Edit cart"
+                            title="Share cart"
                         >
-                            ✎
+                            <img src={shareIcon} alt="share" style={styles.iconImg} />
                         </button>
                         <button
                             onClick={handleClearCart}
                             style={styles.iconBtn}
                             title="Clear cart"
                         >
-                            🗑️
+                            <img src={clearCartIcon} alt="clear cart" style={styles.iconImg} />
                         </button>
                         <button
                             onClick={onClose}
                             style={styles.iconBtn}
                             title="Close cart"
                         >
-                            ✕
+                            <img src={closeCartIcon} alt="close cart" style={styles.iconImg} />
                         </button>
                     </div>
                 </div>
@@ -97,7 +105,10 @@ export default function ShoppingCartPage({ isOpen, onClose }) {
                                                 {product.price}{product.currency}
                                             </span>
                                         </div>
-                                        <button style={styles.addToCartBtn}>
+                                        <button 
+                                            style={styles.addToCartBtn}
+                                            onClick={() => handleAddToRecommended(product)}
+                                        >
                                             Add to cart
                                         </button>
                                     </div>
@@ -118,10 +129,11 @@ const styles = {
         left: 0,
         right: 0,
         bottom: 0,
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        backgroundColor: 'rgba(0, 0, 0, 0.8)',
         display: 'flex',
         justifyContent: 'flex-end',
         zIndex: 1500,
+        animation: 'fadeIn 0.3s ease-out',
     },
     drawer: {
         backgroundColor: '#fff',
@@ -131,7 +143,7 @@ const styles = {
         display: 'flex',
         flexDirection: 'column',
         boxShadow: '-4px 0 12px rgba(0, 0, 0, 0.15)',
-        animation: 'slideIn 0.3s ease-out',
+        animation: 'slideInRight 0.35s cubic-bezier(0.34, 1.56, 0.64, 1)',
     },
     header: {
         display: 'flex',
@@ -159,10 +171,16 @@ const styles = {
         background: 'none',
         cursor: 'pointer',
         fontSize: '18px',
-        transition: 'opacity 0.2s ease',
+        padding: '0',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        transition: 'opacity 0.2s ease',
+    },
+    iconImg: {
+        width: '24px',
+        height: '24px',
+        objectFit: 'contain',
     },
     content: {
         flex: 1,
@@ -255,3 +273,30 @@ const styles = {
         fontFamily: 'MediumFont, sans-serif',
     },
 };
+
+// Add CSS animations
+const styleSheet = document.createElement('style');
+styleSheet.textContent = `
+    @keyframes slideInRight {
+        from {
+            opacity: 0;
+            transform: translateX(100%);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+`;
+if (document.head) {
+    document.head.appendChild(styleSheet);
+}

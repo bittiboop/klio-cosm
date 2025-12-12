@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const bestsellersData = {
     '/': { 
@@ -34,8 +34,13 @@ const bestsellersData = {
 
 export default function Bestsellers() {
     const location = useLocation();
+    const navigate = useNavigate();
     const currentPath = location.pathname;
     const bestseller = bestsellersData[currentPath] || bestsellersData['/'];
+
+    const handleShopNow = () => {
+        navigate('/all-products');
+    };
 
     let imageUrl = bestseller.image;
     try {
@@ -59,7 +64,7 @@ export default function Bestsellers() {
                 <p style={styles.description}>
                     {bestseller.description}
                 </p>
-                <button style={styles.button}>Shop now</button>
+                <button style={styles.button} onClick={handleShopNow}>Shop now</button>
             </div>
         </div>
         </div>

@@ -1,5 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { useAuthContext } from '../../../features/AuthContext';
+import { useNotification } from '../../../features/NotificationContext';
+import { addToFavorites, removeFromFavorites } from '../../../features/favorites/favoritesSlice';
+import { addToCart } from '../../../features/cart/cartSlice';
 import heartIcon from "../../../assets/img/icons-btn/heart-icon.png";
 // eslint-disable-next-line no-unused-vars
 import ProductList from '../../../assets/data/products.json';
@@ -10,12 +15,25 @@ export default function ProductMainInfo({ProductList, productId}) {
     const [isLiked, setIsLiked] = useState(false);
     // eslint-disable-next-line no-unused-vars
     const [selectedImage, setSelectedImage] = useState(0);
+    const dispatch = useDispatch();
+    const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
+    const favoriteItems = useSelector(state => state.favorites.items);
+    const { onAuthRequired } = useAuthContext();
+    const { showNotification } = useNotification();
+
+    const product = ProductList.products.find(p => p.id === productId);
+
+    // Check if product is in favorites - must be called before early returns
+    useEffect(() => {
+        if (product) {
+            const isFavorited = favoriteItems.some(item => item.id === product.id);
+            setIsLiked(isFavorited);
+        }
+    }, [favoriteItems, product?.id]);
     
     if (!productId) {
         return <div>Loading...</div>;
     }
-
-    const product = ProductList.products.find(p => p.id === productId);
     
     if (!product) {
         return <div>Product not found</div>;
@@ -32,6 +50,35 @@ export default function ProductMainInfo({ProductList, productId}) {
             return require(`../../../${imagePath}`);
         } catch (e) {
             return 'https://via.placeholder.com/400?text=No+Image';
+        }
+    };
+
+    const handleAddToCart = () => {
+        if (!isAuthenticated) {
+            if (onAuthRequired) {
+                onAuthRequired();
+            }
+            showNotification('Please log in to add items to your cart', 'warning');
+            return;
+        }
+        dispatch(addToCart(product));
+        showNotification(`${product.name} added to cart!`, 'success');
+    };
+
+    const handleLikeClick = () => {
+        if (!isAuthenticated) {
+            if (onAuthRequired) {
+                onAuthRequired();
+            }
+            showNotification('Please log in to add items to your favorites', 'warning');
+            return;
+        }
+        if (isLiked) {
+            dispatch(removeFromFavorites(product.id));
+            showNotification('Removed from favorites', 'success');
+        } else {
+            dispatch(addToFavorites(product));
+            showNotification('Added to favorites', 'success');
         }
     };
     
@@ -82,8 +129,8 @@ export default function ProductMainInfo({ProductList, productId}) {
                     </div>
 
                     <div style={styles.actions}>
-                        <button style={styles.addToCartBtn}>Add to cart</button>
-                        <button style={styles.wishlistBtn} onClick={() => setIsLiked(!isLiked)}>
+                        <button style={styles.addToCartBtn} onClick={handleAddToCart}>Add to cart</button>
+                        <button style={styles.wishlistBtn} onClick={handleLikeClick}>
                             <img src={isLiked ? likedHeartIcon : heartIcon} alt="like icon" style={styles.iconImg} />
                         </button>
                     </div>

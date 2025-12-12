@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../features/cart/cartSlice';
+import { addToFavorites, removeFromFavorites } from '../features/favorites/favoritesSlice';
+import { useAuthContext } from '../features/AuthContext';
+import { useNotification } from '../features/NotificationContext';
 import heartIcon from "../assets/img/icons-btn/heart-icon.png";
 import likedHeartIcon from "../assets/img/icons-btn/liked-heart-icon.png";
 
@@ -9,6 +12,16 @@ export default function ProductCard({ProductList}) {
     const [isLiked, setIsLiked] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
+    const favoriteItems = useSelector(state => state.favorites.items);
+    const { onAuthRequired } = useAuthContext();
+    const { showNotification } = useNotification();
+
+    // Check if product is in favorites
+    useEffect(() => {
+        const isFavorited = favoriteItems.some(item => item.id === ProductList.id);
+        setIsLiked(isFavorited);
+    }, [favoriteItems, ProductList.id]);
 
     if (!ProductList) {
         return <div>Loading...</div>;
@@ -28,13 +41,33 @@ export default function ProductCard({ProductList}) {
 
     const handleLikeClick = (e) => {
         e.stopPropagation();
-        setIsLiked(!isLiked);
+        if (!isAuthenticated) {
+            if (onAuthRequired) {
+                onAuthRequired();
+            }
+            showNotification('Please log in to add items to your favorites', 'warning');
+            return;
+        }
+        if (isLiked) {
+            dispatch(removeFromFavorites(ProductList.id));
+            showNotification('Removed from favorites', 'success');
+        } else {
+            dispatch(addToFavorites(ProductList));
+            showNotification('Added to favorites', 'success');
+        }
     };
 
     const handleAddToCart = (e) => {
         e.stopPropagation();
+        if (!isAuthenticated) {
+            if (onAuthRequired) {
+                onAuthRequired();
+            }
+            showNotification('Please log in to add items to your cart', 'warning');
+            return;
+        }
         dispatch(addToCart(ProductList));
-        alert(`${ProductList.name} added to cart!`);
+        showNotification(`${ProductList.name} added to cart!`, 'success');
     };
     
     return (
@@ -62,8 +95,6 @@ export default function ProductCard({ProductList}) {
                         <p style={styles.price}>{ProductList.price}{ProductList.currency}</p>
                     </div>
                     <p style={styles.description}>{ProductList.description}</p>
-                    
-                    {isLiked && <p>Is in your liked products: {ProductList.name}</p>}
 
                     <button
                     onClick={handleAddToCart}

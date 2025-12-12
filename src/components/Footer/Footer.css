@@ -15,3 +15,43 @@ footer a:visited {
 footer a:hover {
     text-decoration: none;
 }
+
+/* Mobile Responsive Footer */
+@media (max-width: 768px) {
+    footer {
+        padding: 20px 16px !important;
+    }
+    
+    footer h1 {
+        font-size: 28px !important;
+    }
+    
+    footer nav {
+        gap: 20px !important;
+        font-size: 14px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    footer {
+        padding: 20px 12px !important;
+    }
+    
+    footer h1 {
+        font-size: 20px !important;
+        margin: 0 !important;
+    }
+    
+    footer nav {
+        flex-direction: column !important;
+        gap: 12px !important;
+        font-size: 12px !important;
+        text-align: center;
+    }
+    
+    footer nav a {
+        display: block;
+        padding: 8px 0;
+    }
+}
+

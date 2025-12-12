@@ -17,28 +17,28 @@ export default function MoreToSee() {
     
     return(
         <div>
-            <div style={styles.moreToSeeContainer}>
-                <h2 style={styles.title}>More to See</h2>
-                <div style={styles.circlesContainer}>
-                    <div style={styles.circleButton} onClick={() => handleNavigate('/palettes')}>
-                        <img style={styles.circleImage} src={MakeupCircle} alt="Makeup" />
-                        <p style={styles.circleLabel}>Makeup</p>
+            <div style={styles.moreToSeeContainer} className="more-to-see-container">
+                <h2 style={styles.title} className="more-to-see-title">More to See</h2>
+                <div style={styles.circlesContainer} className="circles-container">
+                    <div style={styles.circleButton} className="circle-button" onClick={() => handleNavigate('/palettes')}>
+                        <img style={styles.circleImage} className="circle-image" src={MakeupCircle} alt="Makeup" />
+                        <p style={styles.circleLabel} className="circle-label">Makeup</p>
                     </div>
-                    <div style={styles.circleButton} onClick={() => handleNavigate('/*')}>
-                        <img style={styles.circleImage} src={SkincareCircle} alt="Skincare" />
-                        <p style={styles.circleLabel}>Skincare</p>
+                    <div style={styles.circleButton} className="circle-button" onClick={() => handleNavigate('/*')}>
+                        <img style={styles.circleImage} className="circle-image" src={SkincareCircle} alt="Skincare" />
+                        <p style={styles.circleLabel} className="circle-label">Skincare</p>
                     </div>
-                    <div style={styles.circleButton} onClick={() => handleNavigate('/*')}>
-                        <img style={styles.circleImage} src={BodycareCircle} alt="Bodycare" />
-                        <p style={styles.circleLabel}>Body Care</p>
+                    <div style={styles.circleButton} className="circle-button" onClick={() => handleNavigate('/*')}>
+                        <img style={styles.circleImage} className="circle-image" src={BodycareCircle} alt="Bodycare" />
+                        <p style={styles.circleLabel} className="circle-label">Body Care</p>
                     </div>
-                    <div style={styles.circleButton} onClick={() => handleNavigate('/*')}>
-                        <img style={styles.circleImage} src={BeautyToolsCircle} alt="Beauty Tools" />
-                        <p style={styles.circleLabel}>Beauty Tools</p>
+                    <div style={styles.circleButton} className="circle-button" onClick={() => handleNavigate('/*')}>
+                        <img style={styles.circleImage} className="circle-image" src={BeautyToolsCircle} alt="Beauty Tools" />
+                        <p style={styles.circleLabel} className="circle-label">Beauty Tools</p>
                     </div>
-                    <div style={styles.circleButton} onClick={() => handleNavigate('/*')}>
-                        <img style={styles.circleImage} src={GiftCardsCircle} alt="Gift Cards" />
-                        <p style={styles.circleLabel}>Gift cards</p>
+                    <div style={styles.circleButton} className="circle-button" onClick={() => handleNavigate('/*')}>
+                        <img style={styles.circleImage} className="circle-image" src={GiftCardsCircle} alt="Gift Cards" />
+                        <p style={styles.circleLabel} className="circle-label">Gift cards</p>
                     </div>
                 </div>
             </div>

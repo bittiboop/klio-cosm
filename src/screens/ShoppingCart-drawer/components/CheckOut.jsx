@@ -1,9 +1,12 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { clearCart } from '../../../features/cart/cartSlice';
+import { addPurchase } from '../../../features/purchases/purchasesSlice';
+import { useNotification } from '../../../features/NotificationContext';
 
 export default function CheckOut() {
     const dispatch = useDispatch();
+    const { showNotification } = useNotification();
     const items = useSelector(state => state.cart.items);
     const discountAmount = useSelector(state => state.cart.discountAmount);
 
@@ -15,11 +18,26 @@ export default function CheckOut() {
 
     const handlePurchase = () => {
         if (items.length === 0) {
-            alert('Your cart is empty');
+            showNotification('Your cart is empty', 'warning');
             return;
         }
-        alert(`Purchase complete! Total: ${total}₩`);
+        
+        // Add purchase to history
+        dispatch(addPurchase({
+            items: items.map(item => ({
+                id: item.id,
+                name: item.name,
+                price: item.price,
+                quantity: item.quantity,
+                image: item.image
+            })),
+            subtotal,
+            discountAmount,
+            total,
+        }));
+        
         dispatch(clearCart());
+        showNotification(`Purchase complete! Total: ${total.toLocaleString()}₩`, 'success');
     };
 
     return (

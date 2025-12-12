@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useContext} from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../../features/auth/authSlice';
 import { SearchContext } from '../../features/SearchContext';
@@ -12,8 +12,10 @@ import cartIcon from "../../assets/img/icons-btn/image 3.png";
 export default function Header({ onUserIconClick, onCartClick }){
     const [isScrolled, setIsScrolled] = useState(false);
     const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const { setIsSearchOpen } = useContext(SearchContext);
     const location = useLocation();
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const { isAuthenticated, user } = useSelector(state => state.auth);
     const cartItems = useSelector(state => state.cart.items);
@@ -35,13 +37,27 @@ export default function Header({ onUserIconClick, onCartClick }){
                 <div style={styles.container} className="container">
                     <Link to="/">
                         <h1 style={styles.title}>Clio</h1>
-                    </Link>       
-                    <nav style={styles.nav}>
+                    </Link>
+                    
+                    {/* Desktop Navigation */}
+                    <nav style={styles.nav} className="desktop-nav">
                         <Link to="/all-products" style={location.pathname === '/all-products' ? {...styles.navLink, ...styles.activeLink} : styles.navLink}>All products</Link>
                         <Link to="/lip" style={location.pathname === '/lip' ? {...styles.navLink, ...styles.activeLink} : styles.navLink}>Lip</Link>
                         <Link to="/palettes" style={location.pathname === '/palettes' ? {...styles.navLink, ...styles.activeLink} : styles.navLink}>Eye</Link>
                         <Link to="/face" style={location.pathname === '/face' ? {...styles.navLink, ...styles.activeLink} : styles.navLink}>Face</Link>
                     </nav>
+
+                    {/* Mobile Navigation */}
+                    {isMobileMenuOpen && (
+                        <nav style={styles.mobileNav} className="mobile-nav">
+                            <Link to="/all-products" style={styles.mobileNavLink} onClick={() => setIsMobileMenuOpen(false)}>All products</Link>
+                            <Link to="/lip" style={styles.mobileNavLink} onClick={() => setIsMobileMenuOpen(false)}>Lip</Link>
+                            <Link to="/palettes" style={styles.mobileNavLink} onClick={() => setIsMobileMenuOpen(false)}>Eye</Link>
+                            <Link to="/face" style={styles.mobileNavLink} onClick={() => setIsMobileMenuOpen(false)}>Face</Link>
+                            
+                        </nav>
+                    )}
+                    
                     <nav style={styles.icons}>
                         <div style={styles.userIconContainer}>
                             <button
@@ -57,6 +73,15 @@ export default function Header({ onUserIconClick, onCartClick }){
                                         <p style={styles.userName}>{user?.name}</p>
                                         <p style={styles.userEmail}>{user?.email}</p>
                                     </div>
+                                    <button
+                                        onClick={() => {
+                                            navigate('/profile');
+                                            setIsUserMenuOpen(false);
+                                        }}
+                                        style={styles.profileBtn}
+                                    >
+                                        My Profile
+                                    </button>
                                     <button
                                         onClick={() => {
                                             dispatch(logout());
@@ -87,6 +112,18 @@ export default function Header({ onUserIconClick, onCartClick }){
                                 )}
                             </button>
                         </div>
+                        
+                        {/* Hamburger Menu */}
+                        <button 
+                            className={`hamburger-menu ${isMobileMenuOpen ? 'active' : ''}`}
+                            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                            style={styles.hamburgerBtn}
+                            title="Menu"
+                        >
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </button>
                     </nav>
                 </div>
             </header>
@@ -126,6 +163,36 @@ const styles = {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    mobileNav: {
+        position: 'absolute',
+        top: '60px',
+        left: 0,
+        right: 0,
+        backgroundColor: '#fff',
+        flexDirection: 'column',
+        gap: 0,
+        padding: '12px 0',
+        borderBottom: '1px solid #f0f0f0',
+        zIndex: 100,
+    },
+    mobileNavLink: {
+        padding: '12px 20px',
+        display: 'block',
+        borderBottom: '1px solid #f0f0f0',
+        fontSize: '14px',
+        fontFamily: 'RegularFont',
+        color: '#000',
+        textDecoration: 'none',
+    },
+    hamburgerBtn: {
+        display: 'none',
+        flexDirection: 'column',
+        gap: '4px',
+        background: 'none',
+        border: 'none',
+        cursor: 'pointer',
+        padding: '6px',
     },
     icons: {
         display: 'flex',
@@ -174,6 +241,20 @@ const styles = {
         fontSize: '12px',
         color: '#999',
         fontFamily: 'RegularFont, sans-serif',
+    },
+    profileBtn: {
+        width: '100%',
+        padding: '10px',
+        backgroundColor: '#E8F5FF',
+        color: '#2196F3',
+        border: 'none',
+        borderRadius: '4px',
+        cursor: 'pointer',
+        fontSize: '14px',
+        fontWeight: '500',
+        fontFamily: 'RegularFont, sans-serif',
+        transition: 'background-color 0.3s ease',
+        marginBottom: '10px',
     },
     logoutBtn: {
         width: '100%',
