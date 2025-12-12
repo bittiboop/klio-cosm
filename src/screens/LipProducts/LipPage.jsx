@@ -46,11 +46,17 @@ export default function LipProducts() {
 const styles = {
     container: {
         backgroundColor: '#fff',
+        width: '100%',
+        margin: 0,
+        padding: 0,
+        boxSizing: 'border-box',
     },
     pageWrapper: {
+        width: '100%',
         maxWidth: '1120px',
         margin: '0 auto',
         padding: '60px 20px',
+        boxSizing: 'border-box',
     },
     title: {
         fontSize: '32px',

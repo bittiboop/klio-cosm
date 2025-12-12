@@ -9,7 +9,7 @@ import Reviews from './components/Reviews.jsx';
 
 export default function MainPage() {
     return(
-        <div>
+        <div style={{ width: '100%', margin: 0, padding: 0, boxSizing: 'border-box' }}>
             <DealOfTheMonth/>
             <OurProducts/>
             <Bestsellers/>

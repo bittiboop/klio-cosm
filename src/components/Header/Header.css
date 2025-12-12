@@ -59,7 +59,7 @@ header a:hover {
     }
     
     header h1 {
-        font-size: 22px !important;
+        font-size: 40px !important;
         margin: 0 !important;
     }
     
@@ -72,7 +72,7 @@ header a:hover {
     }
     
     header .icons {
-        gap: 8px !important;
+        gap: 12px !important;
         display: flex !important;
         align-items: center !important;
         margin-left: auto !important;
@@ -89,8 +89,8 @@ header a:hover {
     }
     
     header .icons button img {
-        width: 20px !important;
-        height: 20px !important;
+        width: 36px !important;
+        height: 36px !important;
     }
     
     header .userIconContainer {
@@ -113,14 +113,14 @@ header a:hover {
     }
     
     header button img {
-        width: 20px !important;
-        height: 20px !important;
+        width: 36px !important;
+        height: 36px !important;
     }
     
     .hamburger-menu {
         display: flex !important;
         flex-direction: column;
-        gap: 4px;
+        gap: 5px;
         cursor: pointer;
         background: none;
         border: none;
@@ -128,8 +128,8 @@ header a:hover {
     }
     
     .hamburger-menu span {
-        width: 20px;
-        height: 2px;
+        width: 36px;
+        height: 3px;
         background-color: #000;
         transition: 0.3s;
         display: block;

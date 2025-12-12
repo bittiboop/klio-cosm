@@ -54,10 +54,18 @@ const ReviewCard = ({title, text, rating}) => {
 
 export default function Reviews() {
     const styles = {
+        wrapper: {
+            width: '100%',
+            margin: 0,
+            padding: 0,
+            boxSizing: 'border-box',
+        },
         container: {
             maxWidth: '1120px',
             margin: '0 auto',
             padding: '60px 20px',
+            width: '100%',
+            boxSizing: 'border-box',
         },
         title: {
             fontSize: '32px',
@@ -79,17 +87,19 @@ export default function Reviews() {
     const displayedReviews = ReviewList.reviews.slice(0, 4);
 
     return (
-        <div style={styles.container}>
-            <h2 style={styles.title}>Customer Reviews</h2>
-            <div style={styles.reviewsGrid}>
-                {displayedReviews.map((review) => (
-                    <ReviewCard 
-                        key={review.id}
-                        title={review.title}
-                        text={review.text}
-                        rating={review.rating}
-                    />
-                ))}
+        <div style={styles.wrapper}>
+            <div style={styles.container}>
+                <h2 style={styles.title}>Customer Reviews</h2>
+                <div style={styles.reviewsGrid}>
+                    {displayedReviews.map((review) => (
+                        <ReviewCard 
+                            key={review.id}
+                            title={review.title}
+                            text={review.text}
+                            rating={review.rating}
+                        />
+                    ))}
+                </div>
             </div>
         </div>
     )

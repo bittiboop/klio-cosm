@@ -4,7 +4,7 @@ import ProductList from '../../../assets/data/products.json';
 
 export default function OurProducts() {
     return(
-        <div        >
+        <div style={styles.wrapper}>
             <div style={styles.ourProductsContainer}>
                 <h2 style={styles.ourProductsTitle}>Our Products</h2>
                 <div style={styles.productsListContainer}>
@@ -17,10 +17,18 @@ export default function OurProducts() {
     )
 }
 const styles = {
+    wrapper: {
+        width: '100%',
+        margin: 0,
+        padding: 0,
+        boxSizing: 'border-box',
+    },
     ourProductsContainer: {
         maxWidth: '1120px',
         margin: '0 auto',
-        padding: '60px 20px'
+        padding: '60px 20px',
+        width: '100%',
+        boxSizing: 'border-box',
     },
     ourProductsTitle: {
         fontSize: '32px',

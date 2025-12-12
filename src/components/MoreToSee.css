@@ -1,0 +1,58 @@
+/* MoreToSee Mobile Styles */
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .more-to-see-container {
+        padding: 40px 16px !important;
+    }
+    
+    .more-to-see-title {
+        font-size: 24px !important;
+        margin-bottom: 30px !important;
+    }
+    
+    .circles-container {
+        gap: 20px !important;
+    }
+    
+    .circle-image {
+        width: 120px !important;
+        height: 120px !important;
+        margin-bottom: 8px !important;
+    }
+    
+    .circle-label {
+        font-size: 12px !important;
+    }
+}
+
+/* Small Mobile Responsive */
+@media (max-width: 480px) {
+    .more-to-see-container {
+        padding: 30px 12px !important;
+    }
+    
+    .more-to-see-title {
+        font-size: 20px !important;
+        margin-bottom: 24px !important;
+    }
+    
+    .circles-container {
+        gap: 16px !important;
+    }
+    
+    .circle-button {
+        width: calc(33.33% - 12px) !important;
+        min-width: 80px !important;
+    }
+    
+    .circle-image {
+        width: 120px !important;
+        height: 120px !important;
+        margin-bottom: 6px !important;
+    }
+    
+    .circle-label {
+        font-size: 10px !important;
+    }
+}

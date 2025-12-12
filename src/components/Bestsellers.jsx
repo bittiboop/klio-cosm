@@ -49,7 +49,7 @@ export default function Bestsellers() {
         console.log(`Image not found: ${bestseller.image}`, e);
     }
     return(
-        <div>
+        <div style={styles.wrapper}>
         <div style={styles.bestsellersContainer}>
             <div style={styles.imageSection}>
                 <img
@@ -72,6 +72,12 @@ export default function Bestsellers() {
 }
 
 const styles={
+    wrapper:{
+        width: '100%',
+        margin: 0,
+        padding: 0,
+        boxSizing: 'border-box',
+    },
     bestsellersContainer:{
         display: 'flex',
         alignItems: 'center',
@@ -80,6 +86,8 @@ const styles={
         margin: '0 auto',
         padding: '20px',
         gap: '20px',
+        width: '100%',
+        boxSizing: 'border-box',
     },
     imageSection:{
         flex:1,

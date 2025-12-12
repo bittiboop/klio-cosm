@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import './MoreToSee.css';
 
 import MakeupCircle from '../assets/img/more-to-see/makeup-circle.png'
 import SkincareCircle from '../assets/img/more-to-see/skincare-circle.png'
@@ -16,7 +17,7 @@ export default function MoreToSee() {
     }
     
     return(
-        <div>
+        <div style={styles.wrapper}>
             <div style={styles.moreToSeeContainer} className="more-to-see-container">
                 <h2 style={styles.title} className="more-to-see-title">More to See</h2>
                 <div style={styles.circlesContainer} className="circles-container">
@@ -48,12 +49,20 @@ export default function MoreToSee() {
 
 
 const styles = {
+    wrapper: {
+        width: '100%',
+        margin: 0,
+        padding: 0,
+        boxSizing: 'border-box',
+    },
     moreToSeeContainer: {
         maxWidth: '1280px',
         margin: '0 auto',
         padding: '60px 20px',
         textAlign: 'center',
         backgroundColor: '#fff',
+        width: '100%',
+        boxSizing: 'border-box',
     },
     title: {
         fontSize: '32px',
@@ -67,6 +76,7 @@ const styles = {
         alignItems: 'center',
         gap: '40px',
         flexWrap: 'wrap',
+        margin: '0 auto',
     },
     circleButton: {
         display: 'flex',

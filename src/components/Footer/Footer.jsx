@@ -56,6 +56,7 @@ const styles = {
         width: '100%',
         backgroundColor: '#F1C3C3',
         zIndex: 1000,
+        bottom: 0,
         boxShadow: 'none',
     },
     container: {
