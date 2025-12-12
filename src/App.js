@@ -1,10 +1,5 @@
 import React, { useState } from 'react';
 import './App.css';
-import './styles/mobile.css';
-import './styles/product-card-mobile.css';
-import './styles/profile-cart-mobile.css';
-import './styles/pages-mobile.css';
-import './styles/mainpage-mobile.css';
 
 import Layout from '../src/components/Layout.jsx';
 import MainPage from '../src/screens/Main/MainPage.jsx';

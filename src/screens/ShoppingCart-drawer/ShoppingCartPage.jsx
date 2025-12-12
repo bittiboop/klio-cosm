@@ -137,7 +137,7 @@ const styles = {
     },
     drawer: {
         backgroundColor: '#fff',
-        width: '100%',
+        width: '450px',
         maxWidth: '450px',
         height: '100vh',
         display: 'flex',
@@ -212,7 +212,7 @@ const styles = {
         backgroundColor: '#fafafa',
     },
     recommendedImageContainer: {
-        width: '100%',
+        width: 'auto',
         height: '120px',
         display: 'flex',
         alignItems: 'center',
@@ -222,8 +222,8 @@ const styles = {
         marginBottom: '8px',
     },
     recommendedImage: {
-        maxWidth: '90%',
-        maxHeight: '90%',
+        maxWidth: '110px',
+        maxHeight: '110px',
         objectFit: 'contain',
     },
     recommendedName: {

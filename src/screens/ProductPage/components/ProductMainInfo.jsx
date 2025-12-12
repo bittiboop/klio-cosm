@@ -182,11 +182,11 @@ const styles = {
       border: '1px solid #eee',
     },
     mainImg: {
-      maxWidth: '100%',
+      maxWidth: 'auto',
       height: 'auto',
       maxHeight: '350px',
       objectFit: 'contain',
-      width: '100%',
+      width: 'auto',
     },
     infoSection: {
       flex: '1',

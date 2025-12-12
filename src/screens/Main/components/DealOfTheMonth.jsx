@@ -49,27 +49,28 @@ export default function DealOfTheMonth() {
     };
 
     return (
-        <div style={styles.dealContainer}>
-            <div style={styles.carouselWrapper}>
-                <div style={styles.dealContent}>
-                    <img src={imageUrl} alt="Deal" style={styles.dealImage} />
+        <div className="deal-container" style={styles.dealContainer}>
+            <div className="deal-carousel-wrapper" style={styles.carouselWrapper}>
+                <div className="deal-content" style={styles.dealContent}>
+                    <img className="deal-image" src={imageUrl} alt="Deal" style={styles.dealImage} />
                     
-                    <button style={styles.navButtonLeft} onClick={handlePrevious}>
+                    <button className="deal-nav-button deal-nav-left" style={styles.navButtonLeft} onClick={handlePrevious}>
                         <ChevronLeft size={24} color="#000" />
                     </button>
 
-                    <button style={styles.navButtonRight} onClick={handleNext}>
+                    <button className="deal-nav-button deal-nav-right" style={styles.navButtonRight} onClick={handleNext}>
                         <ChevronRight size={24} color="#000" />
                     </button>
 
-                    <div style={styles.textOverlay}>
-                        <h2 style={styles.title}>Deal of the month</h2>
+                    <div className="deal-text-overlay" style={styles.textOverlay}>
+                        <h2 className="deal-title" style={styles.title}>Deal of the month</h2>
                     </div>
                     
-                    <div style={styles.dotsContainer}>
+                    <div className="deal-dots-container" style={styles.dotsContainer}>
                         {dealsData.map((_, index) => (
                             <span
                                 key={index}
+                                className="deal-dot"
                                 style={{
                                     ...styles.dot,
                                     ...(index === currentDeal ? styles.dotActive : {}),
@@ -78,7 +79,7 @@ export default function DealOfTheMonth() {
                             ></span>
                         ))}
                     </div>
-                    <button style={styles.shopButton} onClick={handleShopNow}>Shop now</button>
+                    <button className="deal-shop-button" style={styles.shopButton} onClick={handleShopNow}>Shop now</button>
                 </div>
             </div>
         </div>

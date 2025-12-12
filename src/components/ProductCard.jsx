@@ -128,7 +128,7 @@ const styles = {
         transition: 'transform 0.2s ease',
     },
     imageContainer: {
-        width: '100%',
+        width: 'auto',
         height: '260px',
         display: 'flex',
         justifyContent: 'center',
@@ -139,8 +139,8 @@ const styles = {
         marginBottom: '18px',
     },
     image: {
-        maxWidth: '85%',
-        maxHeight: '85%',
+        maxWidth: '220px',
+        maxHeight: '220px',
         objectFit: 'contain',
     },
     dotsContainer: {

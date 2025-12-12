@@ -73,6 +73,36 @@ header a:hover {
     
     header .icons {
         gap: 8px !important;
+        display: flex !important;
+        align-items: center !important;
+        margin-left: auto !important;
+    }
+    
+    header .icons button {
+        padding: 6px !important;
+        background: transparent !important;
+        border: none !important;
+        cursor: pointer !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    
+    header .icons button img {
+        width: 20px !important;
+        height: 20px !important;
+    }
+    
+    header .userIconContainer {
+        display: flex !important;
+    }
+    
+    header .cartContainer {
+        display: flex !important;
+    }
+    
+    header .searchBtn {
+        display: flex !important;
     }
     
     header button {

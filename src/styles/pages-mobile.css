@@ -1,65 +1,5 @@
 /* Product Page and Main Page Mobile Responsive */
 
-/* Product Page Mobile */
-@media (max-width: 768px) {
-    .product-page-container {
-        padding-top: 40px !important;
-    }
-    
-    .breadcrumbs {
-        font-size: 12px !important;
-        gap: 4px !important;
-        margin-bottom: 20px !important;
-    }
-    
-    .product-main-content {
-        grid-template-columns: 1fr !important;
-        gap: 24px !important;
-    }
-    
-    .main-image-wrapper {
-        height: 300px !important;
-    }
-    
-    .product-title {
-        font-size: 22px !important;
-    }
-    
-    .product-weight {
-        font-size: 12px !important;
-    }
-    
-    .product-shade-tag {
-        font-size: 11px !important;
-    }
-    
-    .product-description {
-        font-size: 14px !important;
-    }
-    
-    .current-price {
-        font-size: 20px !important;
-    }
-    
-    .old-price {
-        font-size: 12px !important;
-    }
-    
-    .product-actions {
-        gap: 12px !important;
-    }
-    
-    .product-add-to-cart {
-        padding: 10px 16px !important;
-        font-size: 14px !important;
-        flex: 1;
-    }
-    
-    .wishlist-btn {
-        padding: 10px 12px !important;
-    }
-}
-
 @media (max-width: 480px) {
     .breadcrumbs {
         font-size: 11px !important;
@@ -176,42 +116,6 @@
 }
 
 /* Main Page Components Mobile */
-@media (max-width: 768px) {
-    .hero-section {
-        padding: 40px 20px !important;
-        gap: 20px !important;
-    }
-    
-    .hero-title {
-        font-size: 28px !important;
-    }
-    
-    .hero-subtitle {
-        font-size: 14px !important;
-    }
-    
-    .deal-container {
-        grid-template-columns: 1fr !important;
-        gap: 24px !important;
-    }
-    
-    .deal-image {
-        height: 250px !important;
-    }
-    
-    .products-section {
-        padding: 40px 20px !important;
-    }
-    
-    .section-title {
-        font-size: 24px !important;
-    }
-    
-    .products-grid {
-        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)) !important;
-        gap: 16px !important;
-    }
-}
 
 @media (max-width: 480px) {
     .hero-section {
