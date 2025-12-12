@@ -27,9 +27,17 @@ const styles={
     container: {
         display: 'flex',
         flexDirection: 'column',
-        minHeight: '100vh',
+        width: '100%',
+        margin: 0,
+        padding: 0,
+        flexWrap: 'wrap',
+        boxSizing: 'border-box',
     },
     main: {
         flex: 1,
+        width: '100%',
+        margin: 0,
+        padding: 0,
+        boxSizing: 'border-box',
     },
 }
