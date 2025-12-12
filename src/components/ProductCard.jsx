@@ -10,8 +10,10 @@ import likedHeartIcon from "../assets/img/icons-btn/liked-heart-icon.png";
 
 export default function ProductCard({ProductList}) {
     const [isLiked, setIsLiked] = useState(false);
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
     const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
     const favoriteItems = useSelector(state => state.favorites.items);
     const { onAuthRequired } = useAuthContext();
@@ -72,9 +74,9 @@ export default function ProductCard({ProductList}) {
     
     return (
         <div style={styles.cardWrapper}>
-            <div style={styles.card} onClick={handleCardClick}>
-                <div style={styles.imageContainer}>
-                    <img src={imageUrl} alt={ProductList.name} style={styles.image} />
+            <div style={styles.card(isMobile)} onClick={handleCardClick}>
+                <div style={styles.imageContainer(isMobile)}>
+                    <img src={imageUrl} alt={ProductList.name} style={styles.image(isMobile)} />
                     <div style={styles.dotsContainer}>
                         <span style={{...styles.dot, ...styles.dotActive}}></span>
                         <span style={styles.dot}></span>
@@ -83,22 +85,22 @@ export default function ProductCard({ProductList}) {
 
                 <div style={styles.infoContainer}>
                     <div style={styles.headerRow}>
-                        <h3 style={styles.title}>{ProductList.name}</h3>
+                        <h3 style={styles.title(isMobile)}>{ProductList.name}</h3>
                         <button onClick={handleLikeClick} style={styles.likeButton}>
                             <img src={isLiked ? likedHeartIcon : heartIcon} alt="like icon" />
                         </button>
                     </div>
                     <div style={styles.priceSection}>
                         {ProductList.originalPrice && (
-                            <span style={styles.oldPrice}>{ProductList.originalPrice}{ProductList.currency}</span>
+                            <span style={styles.oldPrice(isMobile)}>{ProductList.originalPrice}{ProductList.currency}</span>
                         )}
-                        <p style={styles.price}>{ProductList.price}{ProductList.currency}</p>
+                        <p style={styles.price(isMobile)}>{ProductList.price}{ProductList.currency}</p>
                     </div>
-                    <p style={styles.description}>{ProductList.description}</p>
+                    <p style={styles.description(isMobile)}>{ProductList.description}</p>
 
                     <button
                     onClick={handleAddToCart}
-                    style={styles.addToCartBtn}
+                    style={styles.addToCartBtn(isMobile)}
                     onMouseOver={(e)=> e.target.style.backgroundColor = '#F1C3C3'}
                     onMouseOut={(e)=> e.target.style.backgroundColor = '#FFBCBC'}
                     >
@@ -116,33 +118,33 @@ const styles = {
         justifyContent: 'center',
         alignItems: 'center',
     },
-    card: {
-        width: '280px',
+    card: (isMobile) => ({
+        width: isMobile ? '160px' : '280px',
         backgroundColor: '#f5f5f5',
         borderRadius: '8px',
         overflow: 'hidden',
         display: 'flex',
         flexDirection: 'column',
-        padding: '18px',
+        padding: isMobile ? '10px' : '18px',
         cursor: 'pointer',
         transition: 'transform 0.2s ease',
-    },
-    imageContainer: {
+    }),
+    imageContainer: (isMobile) => ({
         width: 'auto',
-        height: '260px',
+        height: isMobile ? '140px' : '260px',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         position: 'relative',
         backgroundColor: '#fff',
         borderRadius: '6px',
-        marginBottom: '18px',
-    },
-    image: {
-        maxWidth: '220px',
-        maxHeight: '220px',
+        marginBottom: isMobile ? '10px' : '18px',
+    }),
+    image: (isMobile) => ({
+        maxWidth: isMobile ? '120px' : '220px',
+        maxHeight: isMobile ? '120px' : '220px',
         objectFit: 'contain',
-    },
+    }),
     dotsContainer: {
         position: 'absolute',
         bottom: '10px',
@@ -173,13 +175,13 @@ const styles = {
         alignItems: 'center',
         marginBottom: '4px',
     },
-    title: {
-        fontSize: '16px',
+    title: (isMobile) => ({
+        fontSize: isMobile ? '12px' : '16px',
         fontWeight: '400',
         margin: 0,
         color: '#000',
         flex: 1,
-    },
+    }),
     likeButton: {
         background: 'none',
         border: 'none',
@@ -191,40 +193,40 @@ const styles = {
         minWidth: '12px',
         height: '24px',
     },
-    price: {
-        fontSize: '14px',
+    price: (isMobile) => ({
+        fontSize: isMobile ? '12px' : '14px',
         fontWeight: '600',
         margin: '0',
         color: '#000',
-    },
+    }),
     priceSection: {
         display: 'flex',
         alignItems: 'center',
         gap: '8px',
         margin: '0',
     },
-    oldPrice: {
+    oldPrice: (isMobile) => ({
         textDecoration: 'line-through',
         color: '#999',
-        fontSize: '12px',
+        fontSize: isMobile ? '10px' : '12px',
         fontFamily: 'RegularFont',
         margin: '0',
-    },
-    description: {
-        fontSize: '12px',
+    }),
+    description: (isMobile) => ({
+        fontSize: isMobile ? '10px' : '12px',
         margin: '0',
         lineHeight: '1.4',
         color: '#666',
-    },
-    addToCartBtn: {
+    }),
+    addToCartBtn: (isMobile) => ({
         backgroundColor: '#FFBCBC',
         border: 'none',
-        fontSize: '20px',
-        padding: '10px 12px',
+        fontSize: isMobile ? '14px' : '20px',
+        padding: isMobile ? '8px 10px' : '10px 12px',
         borderRadius: '4px',
         cursor: 'pointer',
         color: '#000',
         fontFamily: 'MediumFont',
         marginTop: '8px',
-    }
+    })
 }

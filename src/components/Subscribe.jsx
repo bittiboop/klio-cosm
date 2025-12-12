@@ -62,7 +62,7 @@ const styles = {
         flexWrap: 'wrap',
     },
     emailInput: {
-        height: '30px',
+        height: '50px',
         flex: 1,
         minWidth: '200px',
         padding: '10px 15px',

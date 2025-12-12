@@ -1,13 +1,23 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ProductCard from '../../../components/ProductCard.jsx';
 import ProductList from '../../../assets/data/products.json';
 
 export default function OurProducts() {
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
     return(
         <div style={styles.wrapper}>
             <div style={styles.ourProductsContainer}>
                 <h2 style={styles.ourProductsTitle}>Our Products</h2>
-                <div style={styles.productsListContainer}>
+                <div style={styles.productsListContainer(isMobile)}>
                     {ProductList.products.slice(0,6).map((product) => (
                         <ProductCard key={product.id} ProductList={product} />
                     ))}
@@ -37,10 +47,10 @@ const styles = {
         marginBottom: '50px',
         color: '#000',
     },
-    productsListContainer: {
+    productsListContainer: (isMobile) => ({
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-        gap: '30px',
+        gridTemplateColumns: isMobile ? 'repeat(2, 1fr)' : 'repeat(auto-fit, minmax(280px, 1fr))',
+        gap: isMobile ? '15px' : '30px',
         justifyItems: 'center',
-    },
+    }),
 }

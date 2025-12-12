@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const bestsellersData = {
@@ -35,6 +35,17 @@ const bestsellersData = {
 export default function Bestsellers() {
     const location = useLocation();
     const navigate = useNavigate();
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+    
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
     const currentPath = location.pathname;
     const bestseller = bestsellersData[currentPath] || bestsellersData['/'];
 
@@ -50,21 +61,21 @@ export default function Bestsellers() {
     }
     return(
         <div style={styles.wrapper}>
-        <div style={styles.bestsellersContainer}>
-            <div style={styles.imageSection}>
+        <div style={styles.bestsellersContainer(isMobile)}>
+            <div style={styles.imageSection(isMobile)}>
                 <img
                 src={imageUrl}
                 alt={bestseller.subtitle}
                 style={styles.bestsellerImage}
                 />
             </div>
-            <div style={styles.contentSection}>
-                <h2 style={styles.title}>{bestseller.title}</h2>
-                <h3 style={styles.subtitle}>{bestseller.subtitle}</h3>
-                <p style={styles.description}>
+            <div style={styles.contentSection(isMobile)}>
+                <h2 style={styles.title(isMobile)}>{bestseller.title}</h2>
+                <h3 style={styles.subtitle(isMobile)}>{bestseller.subtitle}</h3>
+                <p style={styles.description(isMobile)}>
                     {bestseller.description}
                 </p>
-                <button style={styles.button} onClick={handleShopNow}>Shop now</button>
+                <button style={styles.button(isMobile)} onClick={handleShopNow}>Shop now</button>
             </div>
         </div>
         </div>
@@ -78,56 +89,58 @@ const styles={
         padding: 0,
         boxSizing: 'border-box',
     },
-    bestsellersContainer:{
+    bestsellersContainer: (isMobile) => ({
         display: 'flex',
+        flexDirection: isMobile ? 'column' : 'row',
         alignItems: 'center',
         backgroundColor: '#fff',
         maxWidth: '1280px',
         margin: '0 auto',
-        padding: '20px',
-        gap: '20px',
+        padding: isMobile ? '15px' : '20px',
+        gap: isMobile ? '15px' : '20px',
         width: '100%',
         boxSizing: 'border-box',
-    },
-    imageSection:{
-        flex:1,
-        minWidth: '350px'
-    },
+    }),
+    imageSection: (isMobile) => ({
+        flex: 1,
+        minWidth: isMobile ? '100%' : '350px',
+        width: isMobile ? '100%' : 'auto',
+    }),
     bestsellerImage:{
         width: '100%',
         height: 'auto',
         objectFit: 'cover',
         display: 'block',
     },
-    contentSection:{
-        flex:1,
-        padding: '40px',
-    },
-    title:{
-        fontSize: '40px',
+    contentSection: (isMobile) => ({
+        flex: 1,
+        padding: isMobile ? '20px' : '40px',
+    }),
+    title: (isMobile) => ({
+        fontSize: isMobile ? '24px' : '40px',
         fontFamily: 'MediumFont',
         marginBottom: '10px',
-    },
-    subtitle:{
-        fontSize: '25px',
+    }),
+    subtitle: (isMobile) => ({
+        fontSize: isMobile ? '18px' : '25px',
         fontFamily: 'RegularFont',
         marginBottom: '10px',
-    },
-    description:{
-        fontSize: '15px',
+    }),
+    description: (isMobile) => ({
+        fontSize: isMobile ? '13px' : '15px',
         fontFamily: 'RegularFont',
         margin: '20px 0',
         lineHeight: '1.6'
-    },
-    button:{
+    }),
+    button: (isMobile) => ({
         backgroundColor: '#FFBCBC',
         border: 'none',
-        padding: '15px 30px',
-        fontSize: '25px',
+        padding: isMobile ? '10px 20px' : '15px 30px',
+        fontSize: isMobile ? '16px' : '25px',
         cursor: 'pointer',
         color: '#000',
         fontFamily: 'MediumFont',
         borderRadius: '4px',
         boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-    }
+    })
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ProductCard from '../../components/ProductCard.jsx';
 import ProductList from '../../assets/data/products.json';
 import MoreToSee from '../../components/MoreToSee.jsx';
@@ -9,7 +9,17 @@ import Pagination from '../../features/Pagination.jsx'
 export default function FaceProducts() {
     const faceProducts = ProductList.products.filter(product => product.category === 'face-products');
     const [currentPage, setCurrentPage] = useState(1);
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
     const itemsPerPage = 6;
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
     
     const totalPages = Math.ceil(faceProducts.length / itemsPerPage);
     const startIndex = (currentPage - 1) * itemsPerPage;
@@ -22,7 +32,7 @@ export default function FaceProducts() {
             <div style={styles.pageWrapper}>
                 <h1 style={styles.title}>Face products</h1>
                 
-                <div style={styles.productsListContainer}>
+                <div style={styles.productsListContainer(isMobile)}>
                     {currentProducts.map((product) => (
                         <ProductCard key={product.id} ProductList={product} />
                     ))}
@@ -66,10 +76,10 @@ const styles = {
         color: '#000',
         fontFamily: 'RegularFont, sans-serif',
     },
-    productsListContainer: {
+    productsListContainer: (isMobile) => ({
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-        gap: '30px',
+        gridTemplateColumns: isMobile ? 'repeat(2, 1fr)' : 'repeat(auto-fit, minmax(280px, 1fr))',
+        gap: isMobile ? '15px' : '30px',
         justifyItems: 'center',
-    },
+    }),
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import deal1 from '../../../assets/img/main-img/deal 1.png';
@@ -32,7 +32,17 @@ const dealsData = [
 
 export default function DealOfTheMonth() {
     const [currentDeal, setCurrentDeal] = useState(0);
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     const imageUrl = dealsData[currentDeal].image;
 
@@ -49,37 +59,37 @@ export default function DealOfTheMonth() {
     };
 
     return (
-        <div className="deal-container" style={styles.dealContainer}>
+        <div className="deal-container" style={styles.dealContainer(isMobile)}>
             <div className="deal-carousel-wrapper" style={styles.carouselWrapper}>
-                <div className="deal-content" style={styles.dealContent}>
+                <div className="deal-content" style={styles.dealContent(isMobile)}>
                     <img className="deal-image" src={imageUrl} alt="Deal" style={styles.dealImage} />
                     
-                    <button className="deal-nav-button deal-nav-left" style={styles.navButtonLeft} onClick={handlePrevious}>
-                        <ChevronLeft size={24} color="#000" />
+                    <button className="deal-nav-button deal-nav-left" style={styles.navButtonLeft(isMobile)} onClick={handlePrevious}>
+                        <ChevronLeft size={isMobile ? 20 : 24} color="#000" />
                     </button>
 
-                    <button className="deal-nav-button deal-nav-right" style={styles.navButtonRight} onClick={handleNext}>
-                        <ChevronRight size={24} color="#000" />
+                    <button className="deal-nav-button deal-nav-right" style={styles.navButtonRight(isMobile)} onClick={handleNext}>
+                        <ChevronRight size={isMobile ? 20 : 24} color="#000" />
                     </button>
 
-                    <div className="deal-text-overlay" style={styles.textOverlay}>
-                        <h2 className="deal-title" style={styles.title}>Deal of the month</h2>
+                    <div className="deal-text-overlay" style={styles.textOverlay(isMobile)}>
+                        <h2 className="deal-title" style={styles.title(isMobile)}>Deal of the month</h2>
                     </div>
                     
-                    <div className="deal-dots-container" style={styles.dotsContainer}>
+                    <div className="deal-dots-container" style={styles.dotsContainer(isMobile)}>
                         {dealsData.map((_, index) => (
                             <span
                                 key={index}
                                 className="deal-dot"
                                 style={{
-                                    ...styles.dot,
+                                    ...styles.dot(isMobile),
                                     ...(index === currentDeal ? styles.dotActive : {}),
                                 }}
                                 onClick={() => setCurrentDeal(index)}
                             ></span>
                         ))}
                     </div>
-                    <button className="deal-shop-button" style={styles.shopButton} onClick={handleShopNow}>Shop now</button>
+                    <button className="deal-shop-button" style={styles.shopButton(isMobile)} onClick={handleShopNow}>Shop now</button>
                 </div>
             </div>
         </div>
@@ -87,108 +97,109 @@ export default function DealOfTheMonth() {
 }
 
 const styles = {
-    dealContainer: {
+    dealContainer: (isMobile) => ({
         width: '100%',
         margin: '0',
-        padding: '77px 0',
-    },
+        padding: isMobile ? '40px 0' : '77px 0',
+    }),
     carouselWrapper: {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         width: '100%',
     },
-    navButtonLeft: {
+    navButtonLeft: (isMobile) => ({
         position: 'absolute',
-        left: '20px',
+        left: isMobile ? '10px' : '20px',
         top: '50%',
         transform: 'translateY(-50%)',
         border: 'none',
         cursor: 'pointer',
-        padding: '12px',
+        padding: isMobile ? '8px' : '12px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: 'rgba(255, 255, 255, 0.8)',
         borderRadius: '50%',
         zIndex: 15,
-        width: '44px',
-        height: '44px',
-    },
-    navButtonRight: {
+        width: isMobile ? '36px' : '44px',
+        height: isMobile ? '36px' : '44px',
+    }),
+    navButtonRight: (isMobile) => ({
         position: 'absolute',
-        right: '20px',
+        right: isMobile ? '10px' : '20px',
         top: '50%',
         transform: 'translateY(-50%)',
         border: 'none',
         cursor: 'pointer',
-        padding: '12px',
+        padding: isMobile ? '8px' : '12px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: 'rgba(255, 255, 255, 0.8)',
         borderRadius: '50%',
         zIndex: 15,
-        width: '44px',
-        height: '44px',
-    },
-    dealContent: {
+        width: isMobile ? '36px' : '44px',
+        height: isMobile ? '36px' : '44px',
+    }),
+    dealContent: (isMobile) => ({
         position: 'relative',
         width: '100%',
-        height: '500px',
+        height: isMobile ? '300px' : '500px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-    },
+    }),
     dealImage: {
         width: '100%',
         height: '100%',
         objectFit: 'cover',
     },
-    textOverlay: {
+    textOverlay: (isMobile) => ({
         position: 'absolute',
-        top: '30px',
-        left: '30px',
+        top: isMobile ? '15px' : '30px',
+        left: isMobile ? '15px' : '30px',
         zIndex: 5,
-    },
-    title: {
+    }),
+    title: (isMobile) => ({
         margin: 0,
-        fontSize: '32px',
+        fontSize: isMobile ? '18px' : '32px',
         fontWeight: '700',
         color: '#000',
-    },
-    dotsContainer: {
+    }),
+    dotsContainer: (isMobile) => ({
         position: 'absolute',
-        bottom: '20px',
+        bottom: isMobile ? '50px' : '20px',
         left: '50%',
         transform: 'translateX(-50%)',
         display: 'flex',
-        gap: '8px',
+        gap: isMobile ? '5px' : '8px',
         zIndex: 10,
-    },
-    dot: {
-        width: '10px',
-        height: '10px',
+    }),
+    dot: (isMobile) => ({
+        width: isMobile ? '8px' : '10px',
+        height: isMobile ? '8px' : '10px',
         borderRadius: '50%',
         backgroundColor: 'rgba(255, 255, 255, 0.6)',
         cursor: 'pointer',
         transition: 'background-color 0.3s ease',
-    },
+    }),
     dotActive: {
         backgroundColor: '#fff',
     },
-    shopButton: {
+    shopButton: (isMobile) => ({
         position: 'absolute',
-        bottom: '60px',
+        bottom: isMobile ? '15px' : '60px',
         left: '50%',
         transform: 'translateX(-50%)',
         backgroundColor: '#FFBCBC',
         border: 'none',
-        padding: '10px 24px',
+        padding: isMobile ? '8px 16px' : '10px 24px',
         borderRadius: '4px',
         cursor: 'pointer',
-        fontSize: '25px',
+        fontSize: isMobile ? '16px' : '25px',
         fontFamily: 'MediumFont',
         zIndex: 10,
-    },
+        whiteSpace: 'nowrap',
+    }),
 };

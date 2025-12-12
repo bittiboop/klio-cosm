@@ -16,7 +16,6 @@ footer a:hover {
     text-decoration: none;
 }
 
-/* Base Footer Container */
 footer {
     width: 100%;
     box-sizing: border-box;
@@ -59,7 +58,6 @@ footer nav a:hover {
     opacity: 0.7;
 }
 
-/* Scroll to Top Button */
 .scroll-to-top-button {
     position: fixed;
     bottom: 20px;
@@ -84,22 +82,36 @@ footer nav a:hover {
 }
 
 
-
-/* Mobile Responsive */
-@media (max-width: 768px) {
-    footer .container {
-        padding: 14px 10px;
+@media (max-width: 1024px) {
+    footer nav {
+        gap: 10px !important;
+    }
+    footer nav a{
+        font-size: 20px !important;
     }
     
     footer h1 {
-        font-size: 40px;
+        font-size: 32px !important;
+        margin-right: 12px !important;
+    }
+}
+
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    footer {
+        padding: 12px 16px !important;
+    }
+    
+    footer h1 {
+        font-size: 32px;
     }
     
     footer nav {
-        gap: 10px;
+        gap: 8px;
     }
     footer nav a{
-        font-size: 24px;
+        font-size: 16px !important;
     }
     
     .scroll-to-top-button {
