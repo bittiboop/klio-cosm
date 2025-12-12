@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { logout } from '../../features/auth/authSlice';
@@ -10,7 +10,17 @@ import ProductCard from '../../components/ProductCard';
 export default function ProfilePage() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
     const { showNotification } = useNotification();
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
     
     const user = useSelector(state => state.auth.user);
     const favoriteItems = useSelector(state => state.favorites.items);
@@ -50,15 +60,15 @@ export default function ProfilePage() {
         <div style={styles.container}>
             <div style={styles.wrapper}>
                 {/* Profile Header */}
-                <div style={styles.profileHeader}>
-                    <div style={styles.profileInfo}>
+                <div style={styles.profileHeader(isMobile)}>
+                    <div style={styles.profileInfo(isMobile)}>
                         <div style={styles.avatar}>{user.email?.[0]?.toUpperCase()}</div>
                         <div style={styles.userDetails}>
                             <h1 style={styles.userName}>{user.email}</h1>
                             <p style={styles.memberSince}>Member since account creation</p>
                         </div>
                     </div>
-                    <button style={styles.logoutBtn} onClick={handleLogout}>
+                    <button style={styles.logoutBtn(isMobile)} onClick={handleLogout}>
                         Logout
                     </button>
                 </div>
@@ -100,7 +110,7 @@ export default function ProfilePage() {
                             </button>
                         </div>
                     ) : (
-                        <div style={styles.favoritesGrid}>
+                        <div style={styles.favoritesGrid(isMobile)}>
                             {favoriteItems.map((product) => (
                                 <ProductCard key={product.id} ProductList={product} />
                             ))}
@@ -169,21 +179,25 @@ const styles = {
         margin: '0 auto',
         padding: '60px 20px',
     },
-    profileHeader: {
+    profileHeader: (isMobile) => ({
         display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'flex-start',
+        flexDirection: isMobile ? 'column' : 'row',
+        justifyContent: isMobile ? 'center' : 'space-between',
+        alignItems: isMobile ? 'center' : 'flex-start',
         padding: '30px',
         backgroundColor: '#f9f9f9',
         borderRadius: '12px',
         marginBottom: '40px',
         borderBottom: '3px solid #FFBCBC',
-    },
-    profileInfo: {
+        gap: isMobile ? '20px' : '0',
+    }),
+    profileInfo: (isMobile) => ({
         display: 'flex',
-        gap: '20px',
+        flexDirection: isMobile ? 'column' : 'row',
+        gap: isMobile ? '15px' : '20px',
         alignItems: 'center',
-    },
+        justifyContent: isMobile ? 'center' : 'flex-start',
+    }),
     avatar: {
         width: '80px',
         height: '80px',
@@ -215,18 +229,19 @@ const styles = {
         margin: 0,
         fontFamily: 'RegularFont, sans-serif',
     },
-    logoutBtn: {
-        padding: '12px 28px',
+    logoutBtn: (isMobile) => ({
+        padding: isMobile ? '10px 24px' : '12px 28px',
         backgroundColor: '#FFBCBC',
         color: '#000',
         border: 'none',
         borderRadius: '6px',
-        fontSize: '14px',
+        fontSize: isMobile ? '12px' : '14px',
         fontWeight: '600',
         cursor: 'pointer',
         fontFamily: 'MediumFont, sans-serif',
         transition: 'background-color 0.2s ease',
-    },
+        width: isMobile ? '100%' : 'auto',
+    }),
     section: {
         marginBottom: '40px',
     },
@@ -299,12 +314,12 @@ const styles = {
         padding: '100px 20px',
         textAlign: 'center',
     },
-    favoritesGrid: {
+    favoritesGrid: (isMobile) => ({
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-        gap: '30px',
+        gridTemplateColumns: isMobile ? 'repeat(2, 1fr)' : 'repeat(auto-fit, minmax(280px, 1fr))',
+        gap: isMobile ? '15px' : '30px',
         justifyItems: 'center',
-    },
+    }),
     browseBtn: {
         marginTop: '20px',
         padding: '12px 32px',

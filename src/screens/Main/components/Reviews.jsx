@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ReviewList from '../../../assets/data/reviews.json'
 
 const ReviewCard = ({title, text, rating}) => {
@@ -53,6 +53,16 @@ const ReviewCard = ({title, text, rating}) => {
 }
 
 export default function Reviews() {
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
     const styles = {
         wrapper: {
             width: '100%',
@@ -75,12 +85,12 @@ export default function Reviews() {
             color: '#000',
             fontFamily: 'RegularFont, sans-serif',
         },
-        reviewsGrid: {
+        reviewsGrid: (isMobile) => ({
             display: 'grid',
-            gridTemplateColumns: 'repeat(2, 1fr)',
+            gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, 1fr)',
             gap: '30px',
             justifyItems: 'stretch',
-        }
+        })
     }
 
     
@@ -90,7 +100,7 @@ export default function Reviews() {
         <div style={styles.wrapper}>
             <div style={styles.container}>
                 <h2 style={styles.title}>Customer Reviews</h2>
-                <div style={styles.reviewsGrid}>
+                <div style={styles.reviewsGrid(isMobile)}>
                     {displayedReviews.map((review) => (
                         <ReviewCard 
                             key={review.id}
