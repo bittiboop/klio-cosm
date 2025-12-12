@@ -16,57 +16,142 @@ footer a:hover {
     text-decoration: none;
 }
 
-/* Mobile Responsive Footer */
+/* Base Footer Container */
+footer {
+    width: 100%;
+}
+
+footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    max-width: 1280px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+footer h1 {
+    margin: 0;
+    font-size: 40px;
+    font-weight: 400;
+    color: #000;
+}
+
+footer nav {
+    display: flex;
+    gap: 40px;
+    font-size: 25px;
+    font-weight: 400;
+    flex: 1;
+    justify-content: center;
+}
+
+footer nav a {
+    color: #000;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+footer nav a:hover {
+    opacity: 0.7;
+}
+
+/* Scroll to Top Button */
+.scroll-to-top-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #ffdcdcff;
+    padding: 12px;
+    border-radius: 50%;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    z-index: 999;
+}
+
+.scroll-to-top-button:hover {
+    background-color: #ffb3b3;
+}
+
+/* Tablet Responsive */
+@media (max-width: 1024px) {
+    footer .container {
+        padding: 20px 20px;
+    }
+    
+    footer h1 {
+        font-size: 32px;
+    }
+    
+    footer nav {
+        gap: 30px;
+        font-size: 18px;
+    }
+}
+
+/* Mobile Responsive */
 @media (max-width: 768px) {
-    footer {
-        padding: 20px 16px !important;
+    footer .container {
+        padding: 16px 12px;
     }
     
     footer h1 {
-        font-size: 22px !important;
-        margin: 0 !important;
+        font-size: 24px;
     }
     
     footer nav {
-        flex-direction: column !important;
-        gap: 12px !important;
-        font-size: 12px !important;
-        text-align: center;
+        gap: 12px;
+        font-size: 12px;
+    }
+    
+    .scroll-to-top-button {
+        bottom: 20px;
+        right: 12px;
+        width: 36px;
+        height: 36px;
+        padding: 8px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+    }
+    
+    .scroll-to-top-button svg {
+        width: 18px;
+        height: 18px;
     }
 }
 
+/* Small Mobile Responsive */
 @media (max-width: 480px) {
-    footer {
-        padding: 10px 12px !important;
-        gap: 8px !important;
+    footer .container {
+        padding: 12px 8px;
     }
     
     footer h1 {
-        font-size: 20px !important;
-        margin: 0 !important;
+        font-size: 20px;
     }
     
     footer nav {
-        flex-direction: column !important;
-        gap: 12px !important;
-        font-size: 12px !important;
-        text-align: center;
+        gap: 8px;
+        font-size: 10px;
     }
     
-    footer nav a {
-        display: block;
-        padding: 8px 0;
-    }
-    .desktop-nav {
-        display: none !important;
+    .scroll-to-top-button {
+        bottom: 15px;
+        right: 10px;
+        width: 32px;
+        height: 32px;
+        padding: 6px;
     }
     
-    .mobile-nav {
-        display: flex !important;
-    }
-    .scroll-to-top {
-        display: none !important;
-        padding: 8px 0;
+    .scroll-to-top-button svg {
+        width: 16px;
+        height: 16px;
     }
 }
-

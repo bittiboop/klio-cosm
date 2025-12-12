@@ -30,11 +30,11 @@ export default function Footer(){
     return(
         <div>
             <footer style={styles.footer}>
-                <div style={styles.container} className="container">
+                <div style={styles.container} className="container footer-container">
                     <Link to="/">
                         <h1 style={styles.title}>Clio</h1>
                     </Link>       
-                    <nav style={styles.nav}>
+                    <nav style={styles.nav} className="footer-nav">
                         <Link to="/about">About us</Link>
                         <Link to="/lip-products">Customer Service</Link>
                         <Link to="/eye-products">NewsLetter</Link>
@@ -43,7 +43,7 @@ export default function Footer(){
             </footer>
             {/* returning button to the start of the page */}
             {isVisible && (
-                <button onClick={scrollToTop} style={styles.scrollToTopButton}>
+                <button onClick={scrollToTop} style={styles.scrollToTopButton} className="scroll-to-top-button">
                     <ArrowUp />
                 </button>
             )}
@@ -62,7 +62,7 @@ const styles = {
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        padding: '20px 30px',
+        padding: '15px 30px',
         maxWidth: '1280px',
         margin: '0 auto',
         width: '100%',
