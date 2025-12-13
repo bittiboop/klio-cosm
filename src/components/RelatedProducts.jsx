@@ -1,8 +1,19 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import ProductCard from './ProductCard'; 
 import ProductList from '../assets/data/products.json';
 
 function RelatedProducts({ currentProductId, category }) {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const relatedItems = useMemo(() => {
     if (!currentProductId || !category || !ProductList.products) return [];
 
@@ -13,16 +24,14 @@ function RelatedProducts({ currentProductId, category }) {
         
         return isSameCategory && isNotCurrent;
       })
-      .slice(0, 3);
+      .slice(0, 4);
   }, [currentProductId, category]);
 
-  if (relatedItems.length === 0) return null;
-
   return (
-    <section style={styles.container}>
+    <section style={styles.container(isMobile)}>
       <h2 style={styles.heading}>Might be interesting...</h2>
       
-      <div style={styles.grid}>
+      <div style={styles.grid(isMobile)}>
         {relatedItems.map((product) => (
           <ProductCard 
             key={product.id} 
@@ -35,21 +44,23 @@ function RelatedProducts({ currentProductId, category }) {
 }
 
 const styles = {
-    container: {
-        margin: '40px 0',
-        textAlign: 'center'
-    },
+    container: (isMobile) => ({
+        margin: isMobile ? '30px 0' : '40px 0',
+        padding: isMobile ? '0 15px' : '0',
+        textAlign: 'center',
+        boxSizing: 'border-box',
+    }),
     heading: {
         fontSize: '28px',
         fontFamily: 'MediumFont',
         marginBottom: '24px'
     },
-    grid: {
+    grid: (isMobile) => ({
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-        gap: '20px',
-        justifyItems: 'center'
-    }
+        gridTemplateColumns: isMobile ? 'repeat(2, 1fr)' : 'repeat(auto-fit, minmax(280px, 1fr))',
+        gap: isMobile ? '15px' : '30px',
+        justifyItems: 'center',
+    })
 }
 
 export default RelatedProducts;

@@ -15,6 +15,7 @@ export default function ProductMainInfo({ProductList, productId}) {
     const [isLiked, setIsLiked] = useState(false);
     // eslint-disable-next-line no-unused-vars
     const [selectedImage, setSelectedImage] = useState(0);
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
     const dispatch = useDispatch();
     const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
     const favoriteItems = useSelector(state => state.favorites.items);
@@ -22,6 +23,15 @@ export default function ProductMainInfo({ProductList, productId}) {
     const { showNotification } = useNotification();
 
     const product = ProductList.products.find(p => p.id === productId);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     // Check if product is in favorites - must be called before early returns
     useEffect(() => {
@@ -84,14 +94,14 @@ export default function ProductMainInfo({ProductList, productId}) {
     
     return(
         <div style={styles.wrapper}>
-            <div style={styles.breadcrumbs}>
+            <div style={styles.breadcrumbs(isMobile)}>
                 <Link to="/" style={styles.breadcrumbLink}>All products</Link>
                 <span style={styles.breadcrumbSeparator}>/</span>
                 <span style={styles.breadcrumbCurrent}>{categoryName}</span>
             </div>
 
-            <div style={styles.container}>
-                <div style={styles.imageSection}>
+            <div style={styles.container(isMobile)}>
+                <div style={styles.imageSection(isMobile)}>
                     <div style={styles.mainImageWrapper}>
                         <img 
                             src={getImage(imagesPaths[selectedImage])}
@@ -105,10 +115,10 @@ export default function ProductMainInfo({ProductList, productId}) {
                 </div>
 
                 
-                <div style={styles.infoSection}>
-                    <h1 style={styles.title}>{product.name}</h1>
+                <div style={styles.infoSection(isMobile)}>
+                    <h1 style={styles.title(isMobile)}>{product.name}</h1>
             
-                    <div style={styles.metaInfo}>
+                    <div style={styles.metaInfo(isMobile)}>
                         <span style={styles.weight}>{product.weight || '9.0'} gramm</span>
                         {product.subtitle && 
                             <span style={styles.shadeTag}>
@@ -117,18 +127,18 @@ export default function ProductMainInfo({ProductList, productId}) {
                         }
                     </div>
 
-                    <p style={styles.description}>
+                    <p style={styles.description(isMobile)}>
                         {product.description || "The Clio Kill Cover Cushion is your go-to for a flawless finish..."}
                     </p>
 
-                    <div style={styles.priceBlock}>
+                    <div style={styles.priceBlock(isMobile)}>
                         {product.originalPrice && (
                             <span style={styles.oldPrice}>{product.originalPrice}{product.currency}</span>
                         )}
                         <span style={styles.currentPrice}>{product.price}{product.currency}</span>
                     </div>
 
-                    <div style={styles.actions}>
+                    <div style={styles.actions(isMobile)}>
                         <button style={styles.addToCartBtn} onClick={handleAddToCart}>Add to cart</button>
                         <button style={styles.wishlistBtn} onClick={handleLikeClick}>
                             <img src={isLiked ? likedHeartIcon : heartIcon} alt="like icon" style={styles.iconImg} />
@@ -144,13 +154,15 @@ const styles = {
     wrapper: {
         paddingTop: '100px',
     },
-    breadcrumbs: {
-        fontSize: '14px',
+    breadcrumbs: (isMobile) => ({
+        fontSize: isMobile ? '12px' : '14px',
         color: '#666',
-        marginBottom: '30px',
+        marginBottom: isMobile ? '20px' : '30px',
         fontFamily: 'RegularFont',
         textAlign: 'left',
-    },
+        paddingLeft: isMobile ? '15px' : '0',
+        paddingRight: isMobile ? '15px' : '0',
+    }),
     breadcrumbLink: {
         color: '#666',
         textDecoration: 'none',
@@ -162,15 +174,17 @@ const styles = {
     breadcrumbCurrent: {
         color: '#333',
     },
-    container: {
+    container: (isMobile) => ({
       display: 'flex',
-      gap: '50px',
-      padding: '20px 0',
-      alignItems: 'flex-start',
-    },
-    imageSection: {
-      flex: '0 0 40%',
-    },
+      flexDirection: isMobile ? 'column' : 'row',
+      gap: isMobile ? '20px' : '50px',
+      padding: isMobile ? '15px' : '20px 0',
+      alignItems: isMobile ? 'stretch' : 'flex-start',
+    }),
+    imageSection: (isMobile) => ({
+      flex: isMobile ? '1' : '0 0 40%',
+      width: isMobile ? '100%' : 'auto',
+    }),
     mainImageWrapper: {
       display: 'flex',
       justifyContent: 'center',
@@ -188,31 +202,33 @@ const styles = {
       objectFit: 'contain',
       width: 'auto',
     },
-    infoSection: {
-      flex: '1',
+    infoSection: (isMobile) => ({
+      flex: isMobile ? '1' : '1',
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'flex-start',
-      paddingTop: '10px',
-    },
-    title: {
-      fontSize: '32px',
+      paddingTop: isMobile ? '0px' : '10px',
+      paddingLeft: isMobile ? '15px' : '0',
+      paddingRight: isMobile ? '15px' : '0',
+    }),
+    title: (isMobile) => ({
+      fontSize: isMobile ? '24px' : '32px',
       fontFamily: 'MediumFont, sans-serif',
       margin: '0 0 8px 0',
       color: '#1a1a1a',
       fontWeight: '600',
       lineHeight: '1.3',
-    },
-    metaInfo: {
-      marginBottom: '16px',
+    }),
+    metaInfo: (isMobile) => ({
+      marginBottom: isMobile ? '12px' : '16px',
       color: '#666',
-      fontSize: '14px',
+      fontSize: isMobile ? '12px' : '14px',
       fontFamily: 'RegularFont, sans-serif',
       display: 'flex',
       alignItems: 'center',
       gap: '12px',
       flexWrap: 'wrap',
-    },
+    }),
     weight: {
       fontFamily: 'RegularFont, sans-serif',
     },
@@ -233,20 +249,20 @@ const styles = {
       lineHeight: '1',
       color: '#FFBCBC',
     },
-    description: {
+    description: (isMobile) => ({
       lineHeight: '1.6',
       color: '#555',
-      marginBottom: '20px',
-      fontSize: '14px',
+      marginBottom: isMobile ? '16px' : '20px',
+      fontSize: isMobile ? '13px' : '14px',
       fontFamily: 'RegularFont, sans-serif',
-    },
-    priceBlock: {
+    }),
+    priceBlock: (isMobile) => ({
       display: 'flex',
       alignItems: 'center',
-      gap: '12px',
-      marginBottom: '24px',
+      gap: isMobile ? '8px' : '12px',
+      marginBottom: isMobile ? '16px' : '24px',
       paddingTop: '0px',
-    },
+    }),
     oldPrice: {
       textDecoration: 'line-through',
       color: '#999',
@@ -260,12 +276,12 @@ const styles = {
       fontWeight: '700',
       letterSpacing: '-0.5px',
     },
-    actions: {
+    actions: (isMobile) => ({
       display: 'flex',
-      gap: '12px',
+      gap: isMobile ? '8px' : '12px',
       alignItems: 'center',
       marginBottom: '0px',
-    },
+    }),
     addToCartBtn: {
       flex: 1,
       padding: '12px 28px',
